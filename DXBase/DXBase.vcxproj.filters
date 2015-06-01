@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\Win">
+      <UniqueIdentifier>{4403e4da-bea9-49c9-840f-9dc71646aea2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Shader">
+      <UniqueIdentifier>{4d0a7b82-92ec-4b0a-af16-8c1fd3c37c0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Graphics">
+      <UniqueIdentifier>{931a2cf6-1831-40e8-9567-4b9873bca033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\DX">
+      <UniqueIdentifier>{f0fb8229-f6a8-4730-8f87-fcf50644b8ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Common">
+      <UniqueIdentifier>{afd9055f-dc6f-408f-917f-7cb050e25023}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Win">
+      <UniqueIdentifier>{7e908dbf-e1a5-4008-ba33-9738d163eebf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Shader">
+      <UniqueIdentifier>{3779cd46-3dbb-4714-b9f3-72c05d7ef983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Common">
+      <UniqueIdentifier>{7ca212c7-4357-48e5-ac53-c90bfd10e81f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\DX">
+      <UniqueIdentifier>{3cdb5e32-299a-4691-bf7c-7c6bf9fd1461}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game">
+      <UniqueIdentifier>{387c7539-72b7-4461-a2bf-99f85b99c9f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Graphics">
+      <UniqueIdentifier>{7048bcd3-7300-4b9d-9bd1-9f44137f2097}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game">
+      <UniqueIdentifier>{8ac77950-26f2-4bca-871d-8e6b318e79a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game\Base">
+      <UniqueIdentifier>{b4891b6f-cf16-4b75-be04-7a4f5d69e91e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game\Effect">
+      <UniqueIdentifier>{f401fbb7-2b7f-4cf0-be3c-60b10eca89f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game\Factory">
+      <UniqueIdentifier>{898a96ec-654b-4de6-8ae2-33228a378896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game\Manager">
+      <UniqueIdentifier>{0e9692ef-84d9-4ab0-8168-00c0060e79d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game\Object">
+      <UniqueIdentifier>{eb404ab5-0b82-4e49-a176-64fffe29136f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game\Scene">
+      <UniqueIdentifier>{27cb8c03-2b24-43f6-a16e-5db069d53dd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game\Tool">
+      <UniqueIdentifier>{bb400671-5861-4b53-90d9-fcc26e18ace2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Base">
+      <UniqueIdentifier>{1c76aecb-f75d-4131-9aae-60b4f3ff601d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Effect">
+      <UniqueIdentifier>{1c4ecaad-c9d1-4e34-9b98-cda6b4750042}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Factory">
+      <UniqueIdentifier>{728329bb-80db-4ae9-8b34-ae3af0cd0fb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Manager">
+      <UniqueIdentifier>{f11f5bf2-ca92-4849-8390-b99e0778a239}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Tool">
+      <UniqueIdentifier>{c378fe12-e051-44ca-9d74-a5a8b6809601}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Scene">
+      <UniqueIdentifier>{207169e8-0346-43a6-8ae7-844f55bc05b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Object">
+      <UniqueIdentifier>{29e66e38-be8e-45bf-821e-c9323e3cc63c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Board2D.cpp">
+      <Filter>ソース ファイル\Game\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="CaptureWindow.cpp">
+      <Filter>ソース ファイル\Game\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Carten.cpp">
+      <Filter>ソース ファイル\Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>ソース ファイル\Game\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>ソース ファイル\Game\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="DInput.cpp">
+      <Filter>ソース ファイル\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="FactoryBase.cpp">
+      <Filter>ソース ファイル\Game\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Fade.cpp">
+      <Filter>ソース ファイル\Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeIn.cpp">
+      <Filter>ソース ファイル\Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeOut.cpp">
+      <Filter>ソース ファイル\Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMgr.cpp">
+      <Filter>ソース ファイル\Game\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWnd.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>ソース ファイル\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>ソース ファイル\Game\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="List.cpp">
+      <Filter>ソース ファイル\Game\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>ソース ファイル\Game\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Morphing.cpp">
+      <Filter>ソース ファイル\Game\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="MyCollision.cpp">
+      <Filter>ソース ファイル\Game\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="MyHierarchy.cpp">
+      <Filter>ソース ファイル\DX</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMath.cpp">
+      <Filter>ソース ファイル\Game\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>ソース ファイル\Game\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="MySort.cpp">
+      <Filter>ソース ファイル\Game\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBase.cpp">
+      <Filter>ソース ファイル\Game\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Object2D.cpp">
+      <Filter>ソース ファイル\Game\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Object3D.cpp">
+      <Filter>ソース ファイル\Game\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMgr.cpp">
+      <Filter>ソース ファイル\Game\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Particle.cpp">
+      <Filter>ソース ファイル\Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="PoliLine.cpp">
+      <Filter>ソース ファイル\Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="PoliLine2D.cpp">
+      <Filter>ソース ファイル\Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="PoliLine3D.cpp">
+      <Filter>ソース ファイル\Game\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMgr.cpp">
+      <Filter>ソース ファイル\Game\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>ソース ファイル\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Sky.cpp">
+      <Filter>ソース ファイル\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyDome.cpp">
+      <Filter>ソース ファイル\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>ソース ファイル\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>ソース ファイル\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleFactory.cpp">
+      <Filter>ソース ファイル\Game\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBase.cpp">
+      <Filter>ソース ファイル\Game\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMgr.cpp">
+      <Filter>ソース ファイル\Game\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>ソース ファイル\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="Test2D.cpp">
+      <Filter>ソース ファイル\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="TestBill.cpp">
+      <Filter>ソース ファイル\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Billboard.cpp">
+      <Filter>ソース ファイル\Game\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="TexMgr.cpp">
+      <Filter>ソース ファイル\Game\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Animal.cpp">
+      <Filter>ソース ファイル\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Moon.cpp">
+      <Filter>ソース ファイル\Game\Object</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Board2D.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="CaptureWindow.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="List.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Morphing.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMath.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="MySort.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="MyCollision.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>ヘッダー ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>ヘッダー ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DInput.h">
+      <Filter>ヘッダー ファイル\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="Fade.h">
+      <Filter>ヘッダー ファイル\Game\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryBase.h">
+      <Filter>ヘッダー ファイル\Game\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeIn.h">
+      <Filter>ヘッダー ファイル\Game\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeOut.h">
+      <Filter>ヘッダー ファイル\Game\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Carten.h">
+      <Filter>ヘッダー ファイル\Game\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMgr.h">
+      <Filter>ヘッダー ファイル\Game\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>ヘッダー ファイル\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ヘッダー ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>ヘッダー ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="MyHierarchy.h">
+      <Filter>ヘッダー ファイル\DX</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWnd.h">
+      <Filter>ヘッダー ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBase.h">
+      <Filter>ヘッダー ファイル\Game\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Object2D.h">
+      <Filter>ヘッダー ファイル\Game\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Object3D.h">
+      <Filter>ヘッダー ファイル\Game\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMgr.h">
+      <Filter>ヘッダー ファイル\Game\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>ヘッダー ファイル\Game\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="PoliLine.h">
+      <Filter>ヘッダー ファイル\Game\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="PoliLine2D.h">
+      <Filter>ヘッダー ファイル\Game\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="PoliLine3D.h">
+      <Filter>ヘッダー ファイル\Game\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneBase.h">
+      <Filter>ヘッダー ファイル\Game\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMgr.h">
+      <Filter>ヘッダー ファイル\Game\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>ヘッダー ファイル\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Sky.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyDome.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>ヘッダー ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundMgr.h">
+      <Filter>ヘッダー ファイル\Game\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Test2D.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TestBill.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>ヘッダー ファイル\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>ヘッダー ファイル\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleFactory.h">
+      <Filter>ヘッダー ファイル\Game\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>ヘッダー ファイル\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="Billboard.h">
+      <Filter>ヘッダー ファイル\Game\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Animal.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Moon.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="TexMgr.h">
+      <Filter>ヘッダー ファイル\Game\Manager</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
