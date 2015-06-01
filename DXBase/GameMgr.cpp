@@ -5,10 +5,11 @@
 #include "define.h"
 #include "Title.h"
 #include "Stage.h"
+#include "SceneWk.h"
 #include "Input.h"
 
 // グローバル
-DWORD	CGameMgr::m_dwNewScene = SCENE_TITLE;		// 新シーン
+DWORD	CGameMgr::m_dwNewScene = SCENE_WK;		// 新シーン
 CGameMgr*		CGameMgr::m_pGameMgr = NULL;			// これを指すポインタ
 
 CGameMgr::CGameMgr(void)
@@ -134,6 +135,7 @@ void CGameMgr::SceneMgr()
 		CTitle::Create();		// タイトル生成
 		break;
 	case SCENE_TITLE:
+		m_pStScene->Release();
 		CTitle::Create();		// タイトル生成
 		break;
 
@@ -142,6 +144,10 @@ void CGameMgr::SceneMgr()
 		CStage::Create();		// ステージ生成
 		break;
 
+	case SCENE_WK:
+		m_pStScene->Release();
+		CSceneWk::Create();		// ワークスペース生成
+		break;
 	default:
 
 		break;

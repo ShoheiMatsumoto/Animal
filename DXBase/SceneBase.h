@@ -88,7 +88,16 @@ private:
 
 };
 
+// デバッグ用
 
+
+static float g_fX = 0.0f;
+static float g_fY = 0.0f;
+static float g_z = 200.0f;
+static float g_fovy = 30.0f;
+static float g_fOrt = 1.0f;
+#define CHIPSIZE_X (64.0f)
+#define CHIPSIZE_Y (64.0f)
 
 //=======================================================================================
 //	End of File

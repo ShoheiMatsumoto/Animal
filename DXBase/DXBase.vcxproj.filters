@@ -243,6 +243,12 @@
     <ClCompile Include="Moon.cpp">
       <Filter>ソース ファイル\Game\Object</Filter>
     </ClCompile>
+    <ClCompile Include="WkFactory.cpp">
+      <Filter>ソース ファイル\Game\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneWk.cpp">
+      <Filter>ソース ファイル\Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -400,6 +406,12 @@
     </ClInclude>
     <ClInclude Include="TexMgr.h">
       <Filter>ヘッダー ファイル\Game\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="WkFactory.h">
+      <Filter>ヘッダー ファイル\Game\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneWk.h">
+      <Filter>ヘッダー ファイル\Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
