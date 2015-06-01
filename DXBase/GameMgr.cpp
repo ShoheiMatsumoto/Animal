@@ -6,10 +6,12 @@
 #include "Title.h"
 #include "Stage.h"
 #include "SceneWk.h"
+#include "SceneWkI.h"
+#include "SceneWkN.h"
 #include "Input.h"
 
 // グローバル
-DWORD	CGameMgr::m_dwNewScene = SCENE_WK;		// 新シーン
+DWORD	CGameMgr::m_dwNewScene = SCENE_WK_N;		// 新シーン
 CGameMgr*		CGameMgr::m_pGameMgr = NULL;			// これを指すポインタ
 
 CGameMgr::CGameMgr(void)
@@ -147,6 +149,16 @@ void CGameMgr::SceneMgr()
 	case SCENE_WK:
 		m_pStScene->Release();
 		CSceneWk::Create();		// ワークスペース生成
+		break;
+
+	case SCENE_WK_I:
+		m_pStScene->Release();
+		CSceneWkI::Create();		// ワークスペース生成
+		break;
+
+	case SCENE_WK_N:
+		m_pStScene->Release();
+		CSceneWkN::Create();		// ワークスペース生成
 		break;
 	default:
 

@@ -249,6 +249,18 @@
     <ClCompile Include="SceneWk.cpp">
       <Filter>ソース ファイル\Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="WkFactoryI.cpp">
+      <Filter>ソース ファイル\Game\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="WkFactoryN.cpp">
+      <Filter>ソース ファイル\Game\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneWkN.cpp">
+      <Filter>ソース ファイル\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneWkI.cpp">
+      <Filter>ソース ファイル\Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -411,6 +423,18 @@
       <Filter>ヘッダー ファイル\Game\Factory</Filter>
     </ClInclude>
     <ClInclude Include="SceneWk.h">
+      <Filter>ヘッダー ファイル\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="WkFactoryI.h">
+      <Filter>ヘッダー ファイル\Game\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="WkFactoryN.h">
+      <Filter>ヘッダー ファイル\Game\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneWkI.h">
+      <Filter>ヘッダー ファイル\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneWkN.h">
       <Filter>ヘッダー ファイル\Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>

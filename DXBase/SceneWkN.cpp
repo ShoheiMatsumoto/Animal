@@ -2,24 +2,24 @@
 
 // インクルード
 #include <stdio.h>
-#include "SceneWk.h"
+#include "SceneWkN.h"
 #include "define.h"
 #include "GameMgr.h"
 #include "Input.h"
 #include "MyCollision.h"
-#include "WkFactory.h"
+#include "WkFactoryN.h"
 #include "Collision.h"
 
 
 
 // コンストラクタ
-CSceneWk::CSceneWk()
+CSceneWkN::CSceneWkN()
 {
 	
 }
 
 // デストラクタ
-CSceneWk::~CSceneWk()
+CSceneWkN::~CSceneWkN()
 {
 	
 }
@@ -27,9 +27,9 @@ CSceneWk::~CSceneWk()
 //--------------------------------------------------------
 // タイトル生成
 //--------------------------------------------------------
-CSceneWk* CSceneWk::Create()
+CSceneWkN* CSceneWkN::Create()
 {
-	CSceneWk* pTitle = new CSceneWk();		// タイトルインスタンス生成
+	CSceneWkN* pTitle = new CSceneWkN();		// タイトルインスタンス生成
 
 	if(!pTitle->Initialize())
 		SAFE_DELETE(pTitle);
@@ -42,7 +42,7 @@ CSceneWk* CSceneWk::Create()
 //--------------------------------------------------------
 // タイトル初期化
 //--------------------------------------------------------
-bool CSceneWk::Initialize()
+bool CSceneWkN::Initialize()
 {
 	// タイトルに使うもの用意
 	//m_pGraph = pGraph;
@@ -58,7 +58,7 @@ bool CSceneWk::Initialize()
 	m_pObjMgr = m_pObjMgr->Create();
 
 	// ファクトリ生成
-	m_pFactory = CWkFactory::Create();
+	m_pFactory = CWkFactoryN::Create();
 
 	// オブジェクト生成
 	// 2D
@@ -165,7 +165,7 @@ bool CSceneWk::Initialize()
 //--------------------------------------------------------
 // タイトル更新
 //--------------------------------------------------------
-void CSceneWk::Update()
+void CSceneWkN::Update()
 {
 #ifdef _DEBUG
 	if(GETINPUT->GetKey(KEY_PRS, DIK_1))
@@ -254,7 +254,7 @@ void CSceneWk::Update()
 //--------------------------------------------------------
 // タイトルの描画
 //--------------------------------------------------------
-void CSceneWk::Draw()
+void CSceneWkN::Draw()
 {
 	m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
 	TCHAR	str[256];
@@ -270,7 +270,7 @@ void CSceneWk::Draw()
 	
 
 	// 各種デバッグ用数値表示
-	_stprintf(str, _T("松本ワークスペース\n"));
+	_stprintf(str, _T("中山ワークスペース\n"));
 	lstrcat(m_szDebug, str);
 	
 	// デバッグ文字列描画
@@ -278,7 +278,7 @@ void CSceneWk::Draw()
 	
 }
 
-void CSceneWk::Release()
+void CSceneWkN::Release()
 {
 	// テクスチャ解放
 	m_pTexMgr->Release();
@@ -302,13 +302,13 @@ void CSceneWk::Release()
 
 }
 
-void CSceneWk::SetChangeScene()
+void CSceneWkN::SetChangeScene()
 {
 
 }
 
 // あたり判定まとめ
-void CSceneWk::CheckRunHit()
+void CSceneWkN::CheckRunHit()
 {
 	// あたり判定走査
 	Collision Col;

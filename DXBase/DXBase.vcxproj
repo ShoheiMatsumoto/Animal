@@ -50,6 +50,8 @@
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="SceneWk.cpp" />
+    <ClCompile Include="SceneWkI.cpp" />
+    <ClCompile Include="SceneWkN.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Sky.cpp" />
     <ClCompile Include="SkyDome.cpp" />
@@ -63,6 +65,8 @@
     <ClCompile Include="TitleFactory.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WkFactory.cpp" />
+    <ClCompile Include="WkFactoryI.cpp" />
+    <ClCompile Include="WkFactoryN.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animal.h" />
@@ -106,6 +110,8 @@
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="SceneWk.h" />
+    <ClInclude Include="SceneWkI.h" />
+    <ClInclude Include="SceneWkN.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Sky.h" />
     <ClInclude Include="SkyDome.h" />
@@ -119,6 +125,8 @@
     <ClInclude Include="TitleFactory.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WkFactory.h" />
+    <ClInclude Include="WkFactoryI.h" />
+    <ClInclude Include="WkFactoryN.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{39715414-D22F-48A5-AACC-B728A49645E3}</ProjectGuid>
