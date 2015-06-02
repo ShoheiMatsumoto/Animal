@@ -10,7 +10,7 @@ CMoon::CMoon(void)
 {
 }
 
-CMoon::CMoon(int n, int nTexNum) : CBillboard(n, nTexNum)
+CMoon::CMoon(int nID, int nTexNum) : CBillboard(nID, nTexNum)
 {
 
 }

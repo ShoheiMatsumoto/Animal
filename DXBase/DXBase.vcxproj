@@ -44,6 +44,7 @@
     <ClCompile Include="Object3D.cpp" />
     <ClCompile Include="ObjMgr.cpp" />
     <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="PoliLine.cpp" />
     <ClCompile Include="PoliLine2D.cpp" />
     <ClCompile Include="PoliLine3D.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="Object3D.h" />
     <ClInclude Include="ObjMgr.h" />
     <ClInclude Include="Particle.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="PoliLine.h" />
     <ClInclude Include="PoliLine2D.h" />
     <ClInclude Include="PoliLine3D.h" />
@@ -138,7 +140,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>

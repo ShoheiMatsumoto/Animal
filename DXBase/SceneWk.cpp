@@ -51,8 +51,9 @@ bool CSceneWk::Initialize()
 	m_pTexMgr = m_pTexMgr->Create(T_TEX_MAX);
 	
 	// テクスチャエントリー
-	m_pTexMgr->Entry(T_TEX_0, _T("../Data/Image/ButtonCircle.png"), 1);
-	m_pTexMgr->Entry(T_TEX_MOON, _T("../Data/Image/moon.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_0, _T("../Data/Image/ButtonCircle.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_MOON, _T("../Data/Image/moon.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_SQUARE, _T("../Data/Image/UI/ButtonSquare.png"), 1);
 
 	// オブジェマネージャ生成
 	m_pObjMgr = m_pObjMgr->Create();
@@ -96,16 +97,14 @@ bool CSceneWk::Initialize()
 	// 敷き詰める
 	for(int j = -nj; j < nj + jamari; j++)
 	{
-		pv = D3DXVECTOR3(sx * j + rx, -288.0f + CHIPSIZE_X, j * 10.0f);
-		m_pFactory->Request3D(OBJ3D_TESTBILL, pv);
+		pv = D3DXVECTOR3(sx * j + rx, -288.0f + CHIPSIZE_X, 10.0f);
+		m_pFactory->Request3D(WK_OBJ3D_TESTBILL, pv);
 
 	}
 	
-
-	for(int i = 0; i < 1; i++)
-	{
-		m_pFactory->Request3D(OBJ3D_MOON, D3DXVECTOR3(32.0f * i, -288.0f + CHIPSIZE_X, 0.0f));
-	}
+	// プレイヤー
+	m_pFactory->Request3D(WK_OBJ3D_PLAYER, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	
 	
 
 	// カメラ設定

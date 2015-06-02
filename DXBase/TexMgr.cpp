@@ -122,7 +122,7 @@ CImage*		CTexMgr::GetTex(int nTexID)
 	{
 		if(m_pnIDArray[i] == nTexID)
 		{	// ˆê’v
-			nEntry = m_pnIDArray[i];
+			nEntry = i;
 			break;
 		}
 	}

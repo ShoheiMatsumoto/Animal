@@ -1,6 +1,5 @@
 #pragma once
 #include "scenebase.h"
-#include "SceneBase.h"
 #include "Collision.h"
 #include "FadeOut.h"
 #include "FadeIn.h"
@@ -12,6 +11,7 @@ enum
 	WK_TEX_0 = 0,
 	WK_TEX_MOON,
 	WK_TEX_CARTEN,
+	WK_TEX_SQUARE,
 
 	WK_TEX_MAX,
 };
