@@ -4,6 +4,7 @@
 #include "TestBill.h"
 #include "Moon.h"
 #include "Player.h"
+#include "MapPartsBase.h"
 
 // ゲームに使用するオブジェクトの種類
 enum
@@ -22,6 +23,9 @@ enum
 	WK_OBJ3D_MOON = 0,
 	WK_OBJ3D_TESTBILL,
 	WK_OBJ3D_PLAYER,
+	WK_OBJ3D_MPSQUARE,
+	WK_OBJ3D_MPRUP,
+	WK_OBJ3D_MPRDOWN,
 
 	WK_OBJ3D_MAX,
 };
@@ -34,6 +38,7 @@ protected:
 	CTestBill	m_TestBill;
 	CMoon		m_Moon;
 	CPlayer		m_Player;
+	CMapPartsBase m_MapParts;
 
 public:
 	CWkFactory(void);

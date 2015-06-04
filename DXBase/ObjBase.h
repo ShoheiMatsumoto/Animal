@@ -104,7 +104,7 @@ public:
 	virtual void Draw();
 	virtual void DrawSetUp();
 	virtual void DrawEnd();
-	virtual void HitUpdate(CObjBase* pObj){};		// 当たり判定後更新
+	virtual void HitUpdate(CObjBase* pObj, D3DXVECTOR3 vPos){};		// 当たり判定後更新
 
 	// 拡張
 	//bool CollSquare(CObjBase* pObj);

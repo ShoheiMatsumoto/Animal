@@ -9,7 +9,7 @@
 #include "MyCollision.h"
 #include "WkFactory.h"
 #include "Collision.h"
-
+#include "AnimalColl.h"
 
 
 // コンストラクタ
@@ -95,12 +95,14 @@ bool CSceneWk::Initialize()
 		ry = 0.0f;
 
 	// 敷き詰める
-	for(int j = -nj; j < nj + jamari; j++)
+	/*for(int j = -nj; j < nj + jamari; j++)
 	{
 		pv = D3DXVECTOR3(sx * j + rx, -288.0f + CHIPSIZE_X, 10.0f);
-		m_pFactory->Request3D(WK_OBJ3D_TESTBILL, pv);
+		m_pFactory->Request3D(WK_OBJ3D_MPRUP, pv);
 
-	}
+	}*/
+
+	m_pFactory->Request3D(WK_OBJ3D_MPRUP, D3DXVECTOR3(0.0f, -288.0f + 32.0f, 10.0f));
 	
 	// プレイヤー
 	m_pFactory->Request3D(WK_OBJ3D_PLAYER, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
@@ -222,23 +224,23 @@ void CSceneWk::Update()
 		m_camera.SetLookPos(D3DXVECTOR3(g_fX,g_fY, 0.0f));*/
 	}
 #endif
-	// シーン切り替え制御
-	if(m_bSC)
-	{
-		if(m_pFadeOut->AskFin())		// フェードが終わったか
-		{
-			CGameMgr::GetThis()->SetScene(SCENE_STAGE);		// シーン切り替え
-		}
-	}
-	else
-	{
-		if(GETINPUT->GetKey(KEY_TRG, DIK_SPACE))
-		{
-			m_pFadeOut = m_pFadeOut->Create(T_TEX_CARTEN);		// フェードアウト生成
-			m_bSC = true;
-			//CGameMgr::m_pGameMgr->SetScene(SCENE_STAGE);
-		}
-	}
+	//// シーン切り替え制御
+	//if(m_bSC)
+	//{
+	//	if(m_pFadeOut->AskFin())		// フェードが終わったか
+	//	{
+	//		CGameMgr::GetThis()->SetScene(SCENE_STAGE);		// シーン切り替え
+	//	}
+	//}
+	//else
+	//{
+	//	if(GETINPUT->GetKey(KEY_TRG, DIK_SPACE))
+	//	{
+	//		m_pFadeOut = m_pFadeOut->Create(T_TEX_CARTEN);		// フェードアウト生成
+	//		m_bSC = true;
+	//		//CGameMgr::m_pGameMgr->SetScene(SCENE_STAGE);
+	//	}
+	//}
 
 	// 全オブジェクト更新
 	m_pObjMgr->AllUpdate();		// 3D2Dまとめて更新
@@ -311,8 +313,10 @@ void CSceneWk::CheckRunHit()
 {
 	// あたり判定走査
 	Collision Col;
+	CAnimalColl ACol;
 	
-	Col.CollSquareRunBill(m_pObjMgr->GetListTop3D(OBJ3DGROUP_PLAYER), m_pObjMgr->GetListTop3D(OBJ3DGROUP_MAP));
+	//Col.CollSquareRunBill(m_pObjMgr->GetListTop3D(OBJ3DGROUP_PLAYER), m_pObjMgr->GetListTop3D(OBJ3DGROUP_MAP));
+	ACol.CheckRunToMap(m_pObjMgr->GetListTop3D(OBJ3DGROUP_PLAYER), m_pObjMgr->GetListTop3D(OBJ3DGROUP_MAP));
 }
 
 

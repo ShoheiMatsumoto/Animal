@@ -43,7 +43,7 @@ bool Collision::CollSquare3D(CObjBase* pObj1, CObjBase* pObj2)
 			return true;
 		}
 	}
-
+	
 	return false;
 }
 
@@ -55,6 +55,7 @@ void Collision::CollSquareRunBill(CObjBase* pTop1, CObjBase* pTop2)
 	CObjBase* pObj1, *pObj2;
 	pObj1 = pTop1;
 	pObj2 = pTop2;
+	D3DXVECTOR3 vPos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	while(pObj1)
 	{
@@ -62,8 +63,8 @@ void Collision::CollSquareRunBill(CObjBase* pTop1, CObjBase* pTop2)
 		{
 			if(CollSquare3D(pObj1, pObj2))
 			{
-				pObj1->HitUpdate(pObj2);
-				pObj2->HitUpdate(pObj1);
+				pObj1->HitUpdate(pObj2, vPos);
+				pObj2->HitUpdate(pObj1, vPos);
 			}
 
 			pObj2 = pObj2->GetNext();

@@ -102,8 +102,10 @@ void		CPlayer::Update()
 }
 
 // 判定後処理
-void		CPlayer::HitUpdate(CObjBase* pObj)
+void		CPlayer::HitUpdate(CObjBase* pObj, D3DXVECTOR3 vPos)
 {
+	m_vPos = vPos;
+	UpdateBillBoard();		// ビルボード更新
 
 }
 
@@ -167,6 +169,18 @@ void		CPlayer::Move()
 		{
 			m_vSpd.x = -PLAYER_MOVESPDMAX;	// 最大速度
 		}
+	}
+
+	// 上
+	if(GETINPUT->GetKey(KEY_PRS, DIK_UP))
+	{
+		m_vPos.y ++;
+	}
+
+	// 上
+	if(GETINPUT->GetKey(KEY_PRS, DIK_DOWN))
+	{
+		m_vPos.y --;
 	}
 
 	

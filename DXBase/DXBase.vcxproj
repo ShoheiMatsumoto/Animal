@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animal.cpp" />
+    <ClCompile Include="AnimalColl.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="Board2D.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -31,6 +32,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MapPartsBase.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Moon.cpp" />
     <ClCompile Include="Morphing.cpp" />
@@ -71,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animal.h" />
+    <ClInclude Include="AnimalColl.h" />
     <ClInclude Include="Billboard.h" />
     <ClInclude Include="Board2D.h" />
     <ClInclude Include="Camera.h" />
@@ -91,6 +94,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="MapPartsBase.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Moon.h" />
     <ClInclude Include="Morphing.h" />

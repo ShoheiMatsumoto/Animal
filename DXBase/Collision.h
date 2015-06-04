@@ -24,6 +24,7 @@ public:
 	//void CollCircleC(CObjBase* pTop1, CObjBase* pTop2);		// íÜêSäÓèÄ
 	
 	bool CollSquare3D(CObjBase* pObj1, CObjBase* pObj2);
+	
 	// void CollCircle(CObjBase* pTop1, CObjBase* pTop2);
 
 	bool IntersectOBB(D3DXMATRIX& world1, OBB& obb1, D3DXMATRIX& world2, OBB& obb2);

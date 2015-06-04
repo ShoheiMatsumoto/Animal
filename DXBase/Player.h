@@ -46,7 +46,7 @@ public:
 	CPlayer*	Create(int nID, int nTexNum, D3DXVECTOR3 vPos);
 	void		Initialize();
 	void		Update();
-	void		HitUpdate(CObjBase* pObj);
+	void		HitUpdate(CObjBase* pObj, D3DXVECTOR3 vPos);
 	void		Release();
 
 	// Šg’£
