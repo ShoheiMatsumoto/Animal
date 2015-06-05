@@ -63,11 +63,11 @@ void CWkFactoryI::Request3D(int nID, D3DXVECTOR3 vPos)
 
 	switch(nID)
 	{
-	case OBJ3D_MOON:
+	case WKI_OBJ3D_MOON:
 		pObj = m_Moon.Create(nID, WK_I_TEX_MOON, vPos);
 		break;
 
-	case OBJ3D_TESTBILL:
+	case WKI_OBJ3D_TESTBILL :
 		pObj = m_TestBill.Create(nID, WK_I_TEX_0, vPos);
 		break;
 	default:
