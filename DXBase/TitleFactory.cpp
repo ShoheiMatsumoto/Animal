@@ -35,7 +35,7 @@ void CTitleFactory::Release()
 }
 
 //¶¬ˆË—Š
-void CTitleFactory::Request2D(int nID, D3DXVECTOR3 vPos)
+void CTitleFactory::Request2D(int nID, int nTexID, D3DXVECTOR3 vPos)
 {
 	CObjBase* pObj;
 
@@ -79,7 +79,7 @@ void CTitleFactory::Request2D(int nID, D3DXVECTOR3 vPos)
 	CSceneBase::GetCurScene()->GetObjMgr()->EntryObj2D(pObj);
 }
 
-void CTitleFactory::Request3D(int nID, D3DXVECTOR3 vPos)
+void CTitleFactory::Request3D(int nID, int nTexID, D3DXVECTOR3 vPos)
 {
 	CObjBase* pObj;
 

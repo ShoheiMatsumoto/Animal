@@ -54,6 +54,21 @@ bool CSceneWk::Initialize()
 	m_pTexMgr->Entry(WK_TEX_0, _T("../Data/Image/ButtonCircle.png"), 1);
 	m_pTexMgr->Entry(WK_TEX_MOON, _T("../Data/Image/moon.png"), 1);
 	m_pTexMgr->Entry(WK_TEX_SQUARE, _T("../Data/Image/UI/ButtonSquare.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_PLAYER, _T("../Data/Image/player_def.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_SLOPE, _T("../Data/Image/slope.png"), 1);
+
+	m_pTexMgr->Entry(WK_TEX_NEZU, _T("../Data/Image/Animaru/nezu.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_USHI, _T("../Data/Image/Animaru/ushi.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_TORA, _T("../Data/Image/Animaru/tora.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_MIMI, _T("../Data/Image/Animaru/mimi.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_TATSU, _T("../Data/Image/Animaru/tatsu.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_HEBI, _T("../Data/Image/Animaru/hebi.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_UMA, _T("../Data/Image/Animaru/uma.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_MERRY, _T("../Data/Image/Animaru/merry.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_SARU, _T("../Data/Image/Animaru/saru.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_TORI, _T("../Data/Image/Animaru/tori.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_INU, _T("../Data/Image/Animaru/inu.png"), 1);
+	m_pTexMgr->Entry(WK_TEX_URI, _T("../Data/Image/Animaru/uri.png"), 1);
 
 	// オブジェマネージャ生成
 	m_pObjMgr = m_pObjMgr->Create();
@@ -70,13 +85,13 @@ bool CSceneWk::Initialize()
 	/*m_pFactory->Request2D(OBJ2D_TEST0, D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0.0f));
 	m_pFactory->Request2D(OBJ2D_TEST1, D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0.0f));
 	m_pFactory->Request2D(OBJ2D_TEST2, D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0.0f));
-	m_pFactory->Request2D(OBJ2D_TEST3, D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0.0f));
-*/
+	m_pFactory->Request2D(OBJ2D_TEST2D, D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0.0f));
+	*/
 	// 3D
 	D3DXVECTOR3 pv;
 	int ChipX, ChipY;
-	ChipX = SCREEN_WIDTH / CHIPSIZE_X;
-	ChipY = SCREEN_HEIGHT / CHIPSIZE_Y;
+	ChipX = (int)(SCREEN_WIDTH / CHIPSIZE_X);
+	ChipY = (int)(SCREEN_HEIGHT / CHIPSIZE_Y);
 
 	int ni = ChipY / 2;
 	int iamari = ChipY % 2;
@@ -95,17 +110,19 @@ bool CSceneWk::Initialize()
 		ry = 0.0f;
 
 	// 敷き詰める
-	/*for(int j = -nj; j < nj + jamari; j++)
+	for(int j = -6; j < 0; j++)
 	{
-		pv = D3DXVECTOR3(sx * j + rx, -288.0f + CHIPSIZE_X, 10.0f);
-		m_pFactory->Request3D(WK_OBJ3D_MPRUP, pv);
+		pv = D3DXVECTOR3(sx * j - 96.0f, -288.0f + 32.0f, 10.0f);
+		m_pFactory->Request3D(WK_OBJ3D_MPSQUARE, WK_TEX_SQUARE, pv);
 
-	}*/
+	}
+	m_pFactory->Request3D(WK_OBJ3D_MPSQUARE, WK_TEX_SQUARE, D3DXVECTOR3(-288.0f, -224.0f + 32.0f, 10.0f));
+	m_pFactory->Request3D(WK_OBJ3D_MPRDOWN, WK_TEX_SLOPE, D3DXVECTOR3(0.0f, -288.0f + 32.0f, 10.0f));
+	m_pFactory->Request3D(WK_OBJ3D_MPSQUARE, WK_TEX_SQUARE, D3DXVECTOR3(160.0f, -352.0f + 32.0f, 10.0f));
+	m_pFactory->Request3D(WK_OBJ3D_MPRUP, WK_TEX_SLOPE, D3DXVECTOR3(320.0f, -288.0f + 32.0f, 10.0f));
 
-	m_pFactory->Request3D(WK_OBJ3D_MPRUP, D3DXVECTOR3(0.0f, -288.0f + 32.0f, 10.0f));
-	
 	// プレイヤー
-	m_pFactory->Request3D(WK_OBJ3D_PLAYER, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	m_pFactory->Request3D(WK_OBJ3D_PLAYER, WK_TEX_PLAYER, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	
 	
 
@@ -116,8 +133,8 @@ bool CSceneWk::Initialize()
 
 	// スクリーン淵からカメラ座標へのベクトルを求める
 	float rot = 90.0f - FOVY / 2.0f;		// スクリーン淵からカメラへの角度
-	float x = -cos(rot * 3.14 / 180.0f);	// Xベクトル
-	float y = sin(rot * 3.14 / 180.0f);		// 本来はZ軸だがYとして扱う
+	float x = (float)(-cos(rot * 3.14 / 180.0f));	// Xベクトル
+	float y = (float)(sin(rot * 3.14 / 180.0f));		// 本来はZ軸だがYとして扱う
 	vNFrametoCam = D3DXVECTOR3(x, y, 0.0f);	// 淵からカメラへのベクトル
 
 	// スクリーン中心からカメラ、淵からカメラへの2直線の交点を求める
@@ -140,6 +157,8 @@ bool CSceneWk::Initialize()
 	g_z = vCross.y;
 
 	m_pCameraBase = m_pCameraBase->Create();
+	m_pCameraBase = m_pObjMgr->GetListTop3D(OBJ3DGROUP_PLAYER);
+
 	D3DXMATRIX mat = m_pCameraBase->GetMatrix();
 	D3DXVECTOR3 vAdPos = D3DXVECTOR3(0.0f, 0.0f, g_z);	
 	D3DXVECTOR3 vLook =  D3DXVECTOR3(0.0f, 0.0f, 0.0f);
@@ -156,7 +175,7 @@ bool CSceneWk::Initialize()
 	m_pSoundMgr->Entry(SOUND_TEST, _T("../Data/Sound/BGM/bgm_fall.wav"));
 
 	//m_pSoundMgr->RequestSound(SOUND_TEST, SOUND_ONE);
-	//m_pSoundMgr->RequestSound(SOUND_TEST, SOUND_LOOP);
+	// m_pSoundMgr->RequestSound(SOUND_TEST, SOUND_LOOP);
 
 	return true;
 
@@ -206,7 +225,7 @@ void CSceneWk::Update()
 
 	if(GETINPUT->GetKey(KEY_PRS, DIK_Q))
 	{
-		g_fOrt += 0.01;
+		g_fOrt += 0.01f;
 		if(g_fOrt > 1.0f)
 			g_fOrt = 1.0f;
 		m_pGraph->SetOrt(g_fOrt);
@@ -260,6 +279,13 @@ void CSceneWk::Draw()
 	m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
 	TCHAR	str[256];
 	
+	// 各種デバッグ用数値表示
+	_stprintf(str, _T("松本ワークスペース\n"));
+	lstrcat(m_szDebug, str);
+	
+	// デバッグ文字列描画
+	m_pGraph->DrawText((int)10, (int)20, m_szDebug);
+
 	//----- ここに描画処理
 	
 	// カメラ設定
@@ -270,12 +296,7 @@ void CSceneWk::Draw()
 
 	
 
-	// 各種デバッグ用数値表示
-	_stprintf(str, _T("松本ワークスペース\n"));
-	lstrcat(m_szDebug, str);
 	
-	// デバッグ文字列描画
-	m_pGraph->DrawText((int)g_fX, (int)g_fY, m_szDebug);
 	
 }
 

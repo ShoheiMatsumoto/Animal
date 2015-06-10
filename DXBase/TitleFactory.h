@@ -22,8 +22,8 @@ public:
 	void Initialize();		// 初期化
 	static CTitleFactory* Create();			// 生成（自身）
 	void Release();			// 解放
-	void Request2D(int nID, D3DXVECTOR3 vPos);//生成依頼
-	void Request3D(int nID, D3DXVECTOR3 vPos);//生成依頼
+	void Request2D(int nID, int nTexID, D3DXVECTOR3 vPos);//生成依頼
+	void Request3D(int nID, int nTexID, D3DXVECTOR3 vPos);//生成依頼
 
 	// 拡張機能
 };

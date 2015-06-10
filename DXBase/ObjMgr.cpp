@@ -180,6 +180,7 @@ void CObjMgr::Update2D()
 
 		while(pObj)
 		{
+			pObj->SetPostoOldPos();
 			pObj->Update();				// 更新
 			pObj = pObj->GetNext();		// 次のオブジェを取得
 		}
@@ -200,6 +201,7 @@ void CObjMgr::Update3D()
 
 		while(pObj)
 		{
+			pObj->SetPostoOldPos();		// 旧座標更新
 			pObj->Update();				// 更新
 			pObj = pObj->GetNext();		// 次のオブジェを取得
 		}
@@ -482,18 +484,44 @@ void CObjMgr::ReleaseList3D()
 	}
 }
 
+// リストのトップをもらう
 CObject2D*	CObjMgr::GetListTop2D(int nGroupID)
 {
 	return (CObject2D*)m_pObjListTop2D[nGroupID]->GetNext();
 }
 
-
+// リストのトップをもらう
 CObject3D*	CObjMgr::GetListTop3D(int nGroupID)
 {
 	
 	return (CObject3D*)m_pObjListTop3D[nGroupID]->GetNext();
 }
 
+// 個別のオブジェクトを取得
+CObjBase*	CObjMgr::GetIdentifObj2D(int nGID, int nTID, int nIID)
+{
+	return NULL;
+}
 
+// 個別のオブジェクトを取得
+CObjBase*	CObjMgr::GetIdentifObj3D(int nGID, int nTID, int nIID)
+{
+	CObjBase* pObj;
+	pObj = m_pObjListTop3D[nGID]->GetNext();		// グループのトップをもらう
+
+	while(pObj)
+	{
+		if(pObj->GetTypeID() == nTID)
+		{
+			if(pObj->GetIdentifID() == nIID)
+				return pObj;
+		}
+		pObj = pObj->GetNext(); 
+	}
+
+	MessageBox(NULL , _T("GetIdentifObj3D() そんなオブジェないよ") ,"", MB_OK);
+
+	return NULL;
+}
 
 // eof

@@ -91,6 +91,24 @@
     <Filter Include="ヘッダー ファイル\Game\Object">
       <UniqueIdentifier>{29e66e38-be8e-45bf-821e-c9323e3cc63c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Object\Animaru">
+      <UniqueIdentifier>{85910591-871d-478d-a3f4-0e6dfbd3fe43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Object\MapParts">
+      <UniqueIdentifier>{0913ff3b-2dcf-43f0-b290-137631fd383e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Game\Tool\Collision">
+      <UniqueIdentifier>{80eccebf-1a09-4ebb-b6ff-3c6c63f18b75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game\Tool\Collision">
+      <UniqueIdentifier>{c00bd19d-ef42-4208-ae0e-52373e1b6a97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game\Object\Animaru">
+      <UniqueIdentifier>{5760527b-6157-49d0-935a-b29bd4c73e09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game\Object\MapParts">
+      <UniqueIdentifier>{9008b75f-e175-4918-a15a-63600ed5c0b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Board2D.cpp">
@@ -104,9 +122,6 @@
     </ClCompile>
     <ClCompile Include="Carten.cpp">
       <Filter>ソース ファイル\Game\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>ソース ファイル\Game\Tool</Filter>
     </ClCompile>
     <ClCompile Include="Cursor.cpp">
       <Filter>ソース ファイル\Game\Tool</Filter>
@@ -148,9 +163,6 @@
       <Filter>ソース ファイル\Game\Tool</Filter>
     </ClCompile>
     <ClCompile Include="Morphing.cpp">
-      <Filter>ソース ファイル\Game\Tool</Filter>
-    </ClCompile>
-    <ClCompile Include="MyCollision.cpp">
       <Filter>ソース ファイル\Game\Tool</Filter>
     </ClCompile>
     <ClCompile Include="MyHierarchy.cpp">
@@ -234,9 +246,6 @@
     <ClCompile Include="TexMgr.cpp">
       <Filter>ソース ファイル\Game\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Animal.cpp">
-      <Filter>ソース ファイル\Game\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Moon.cpp">
       <Filter>ソース ファイル\Game\Object</Filter>
     </ClCompile>
@@ -261,14 +270,62 @@
     <ClCompile Include="GameMgr.cpp">
       <Filter>ソース ファイル\Game\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="Collision.cpp">
+      <Filter>ソース ファイル\Game\Tool\Collision</Filter>
     </ClCompile>
-    <ClCompile Include="MapPartsBase.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="MyCollision.cpp">
+      <Filter>ソース ファイル\Game\Tool\Collision</Filter>
     </ClCompile>
     <ClCompile Include="AnimalColl.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Game\Tool\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Hebimaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Hosumaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Inumaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimimaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Mokomaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Nekomaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Nezumaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Sarumaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Tatsumaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Toramaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Torimaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Urimaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="Ushimaru.cpp">
+      <Filter>ソース ファイル\Game\Object\Animaru</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimaruBase.cpp">
+      <Filter>ソース ファイル\Game\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MapPartsBase.cpp">
+      <Filter>ソース ファイル\Game\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -279,9 +336,6 @@
       <Filter>ヘッダー ファイル\Game\Tool</Filter>
     </ClInclude>
     <ClInclude Include="CaptureWindow.h">
-      <Filter>ヘッダー ファイル\Game\Tool</Filter>
-    </ClInclude>
-    <ClInclude Include="Collision.h">
       <Filter>ヘッダー ファイル\Game\Tool</Filter>
     </ClInclude>
     <ClInclude Include="Cursor.h">
@@ -299,13 +353,7 @@
     <ClInclude Include="Morphing.h">
       <Filter>ヘッダー ファイル\Game\Tool</Filter>
     </ClInclude>
-    <ClInclude Include="MyMath.h">
-      <Filter>ヘッダー ファイル\Game\Tool</Filter>
-    </ClInclude>
     <ClInclude Include="MySort.h">
-      <Filter>ヘッダー ファイル\Game\Tool</Filter>
-    </ClInclude>
-    <ClInclude Include="MyCollision.h">
       <Filter>ヘッダー ファイル\Game\Tool</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
@@ -419,9 +467,6 @@
     <ClInclude Include="Billboard.h">
       <Filter>ヘッダー ファイル\Game\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Animal.h">
-      <Filter>ヘッダー ファイル\Game\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Moon.h">
       <Filter>ヘッダー ファイル\Game\Object</Filter>
     </ClInclude>
@@ -446,14 +491,65 @@
     <ClInclude Include="SceneWkN.h">
       <Filter>ヘッダー ファイル\Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Hebimaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
     </ClInclude>
-    <ClInclude Include="MapPartsBase.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Hosumaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimimaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Mokomaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Nekomaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Nezumaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Inumaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Sarumaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Tatsumaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Urimaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Ushimaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Torimaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
+    </ClInclude>
+    <ClInclude Include="Toramaru.h">
+      <Filter>ヘッダー ファイル\Game\Object\Animaru</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimaruBase.h">
+      <Filter>ヘッダー ファイル\Game\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>ヘッダー ファイル\Game\Tool\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="MyCollision.h">
+      <Filter>ヘッダー ファイル\Game\Tool\Collision</Filter>
     </ClInclude>
     <ClInclude Include="AnimalColl.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Game\Tool\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダー ファイル\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMath.h">
+      <Filter>ヘッダー ファイル\Game\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="MapPartsBase.h">
+      <Filter>ヘッダー ファイル\Game\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

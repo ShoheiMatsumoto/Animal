@@ -16,6 +16,9 @@ CBillboard::CBillboard(void)
 
 	// 投影法
 	m_nViewProjType = VIEWPROJ_ORT;
+
+	m_Board.m_pIndexBuffer = NULL;
+	m_Board.m_pVertexBuffer = NULL;
 }
 
 CBillboard::CBillboard(int nID, int nTexNum) : CObject3D(nID)
@@ -25,8 +28,6 @@ CBillboard::CBillboard(int nID, int nTexNum) : CObject3D(nID)
 	m_bTrueIsZBuffer = true;
 	m_bAlphaBlend = true;
 
-	m_Board.Initialize(nTexNum);
-	
 	m_vSize.x = m_Board.GetSize().x;	// テクスチャサイズからサイズ設定
 	m_vSize.y = m_Board.GetSize().y;
 	m_vRadius.x = m_vSize.x / 2.0f;
@@ -117,6 +118,9 @@ void CBillboard::InitializeBillboard()
 
 	m_nAlpha = 255;
 	m_nAnimNum = 0;
+	m_nCurDivNum = 0;
+	m_ntexLR = 0;
+	m_ntexTB = 0;
 }
 
 
@@ -254,18 +258,21 @@ void CBillboard::SetTexBillUV(int nPattern)
 	
 	int nMaxNum = m_Board.GetImage()->GetPattern();
 	float fUSize = 1.0f / nMaxNum;
-	float fU = (1.0f / nMaxNum) * nPattern;
+	
+	float sub;
+	sub = (nPattern - m_nCurDivNum) * fUSize;
+	m_nCurDivNum = nPattern;
 
-	m_verWk[0].tu = fU;
+	m_verWk[0].tu += sub;
 	m_verWk[0].tv = 0.0f;
 
-	m_verWk[1].tu = fU + fUSize;
+	m_verWk[1].tu += sub;
 	m_verWk[1].tv = 0.0f;
 
-	m_verWk[2].tu = fU;
+	m_verWk[2].tu += sub;
 	m_verWk[2].tv = 1.0f;
 	
-	m_verWk[3].tu = fU + fUSize;
+	m_verWk[3].tu += sub;
 	m_verWk[3].tv = 1.0f;
 }
 
@@ -389,6 +396,43 @@ void CBillboard::SetLocalWkB()
 	m_verWk[3].z = 0.0f;
 
 	m_nCollBasePoint = COLLBASEPOINT_BOTTOM;
+}
+
+// 左右反転
+void CBillboard::ReverseLR(int nType)
+{
+	//変数宣言
+	float a = 1.0f / m_Board.m_nMaxPlain;	//式省略用変数
+
+	if(nType >= TEX_LRALL || nType < 0)
+		return;
+
+	m_ntexLR = nType;
+
+	if(nType == TEX_LRNORMAL)
+	{
+		m_verWk[0].tu = a * m_nCurDivNum;//D3DXVECTOR2(     , 0.0f);
+		m_verWk[0].tv = 0.0f;
+		m_verWk[1].tu = a * m_nCurDivNum + a;//D3DXVECTOR2( , 0.0f);
+		m_verWk[1].tv = 0.0f;
+		m_verWk[2].tu = a * m_nCurDivNum;//D3DXVECTOR2(     , 1.0f);
+		m_verWk[2].tv = 1.0f;
+		m_verWk[3].tu = a * m_nCurDivNum + a;//D3DXVECTOR2( , 1.0f);
+		m_verWk[3].tv = 1.0f;
+	}
+	else
+	{
+		m_verWk[1].tu = a * m_nCurDivNum;//D3DXVECTOR2(     , 0.0f);
+		m_verWk[1].tv = 0.0f;
+		m_verWk[0].tu = a * m_nCurDivNum + a;//D3DXVECTOR2( , 0.0f);
+		m_verWk[0].tv = 0.0f;
+		m_verWk[3].tu = a * m_nCurDivNum;//D3DXVECTOR2(     , 1.0f);
+		m_verWk[3].tv = 1.0f;
+		m_verWk[2].tu = a * m_nCurDivNum + a;//D3DXVECTOR2( , 1.0f);
+		m_verWk[2].tv = 1.0f;
+	}
+
+	
 }
 
 //=======================================================================================

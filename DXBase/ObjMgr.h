@@ -9,8 +9,6 @@
 
 #define DRAWOBJ_MAX (512)
 
-
-
 //オブジェ管理クラス
 // シーン毎に生成する。
 // シーンごとに違う入れ物でオブジェを管理していく。
@@ -59,6 +57,8 @@ public:
 	// ゲッター
 	CObject2D*	GetListTop2D(int nGroupID);		// 実際トップにある空OBJはとばす
 	CObject3D*	GetListTop3D(int nGroupID);
+	CObjBase*	GetIdentifObj2D(int nGID, int nTID, int nIID);		// 個別のオブジェクトを取得
+	CObjBase*	GetIdentifObj3D(int nGID, int nTID, int nIID);		// 個別のオブジェクトを取得
 
 	// セッター
 	void SetbReset(){m_bResetDrawList = true;};

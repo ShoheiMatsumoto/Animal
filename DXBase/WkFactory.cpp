@@ -36,14 +36,14 @@ void CWkFactory::Release()
 }
 
 //¶¬ˆË—Š
-void CWkFactory::Request2D(int nID, D3DXVECTOR3 vPos)
+void CWkFactory::Request2D(int nID, int nTexID, D3DXVECTOR3 vPos)
 {
 	CObjBase* pObj;
 
 	switch(nID)
 	{
 	case WK_OBJ2D_TEST2D:
-		pObj = m_Test2D.Create(nID, WK_TEX_0, vPos);
+		pObj = m_Test2D.Create(nID, nTexID, vPos);
 		//pObj = m_Test2D.Create(nID, WK_TEX_0);
 		break;
 
@@ -57,7 +57,7 @@ void CWkFactory::Request2D(int nID, D3DXVECTOR3 vPos)
 	CSceneBase::GetCurScene()->GetObjMgr()->EntryObj2D(pObj);
 }
 
-void CWkFactory::Request3D(int nID, D3DXVECTOR3 vPos)
+void CWkFactory::Request3D(int nID, int nTexID, D3DXVECTOR3 vPos)
 {
 	CObjBase* pObj;
 	D3DXVECTOR3 vSize;
@@ -65,30 +65,30 @@ void CWkFactory::Request3D(int nID, D3DXVECTOR3 vPos)
 	switch(nID)
 	{
 	case WK_OBJ3D_MOON:
-		pObj = m_Moon.Create(nID, WK_TEX_MOON, vPos);
+		pObj = m_Moon.Create(nID, nTexID, vPos);
 		break;
 
 	case WK_OBJ3D_TESTBILL:
-		pObj = m_TestBill.Create(nID, WK_TEX_0, vPos);
+		pObj = m_TestBill.Create(nID, nTexID, vPos);
 		break;
 
 	case WK_OBJ3D_PLAYER:
-		pObj = m_Player.Create(nID, WK_TEX_SQUARE, vPos);
+		pObj = m_Player.Create(nID, nTexID, vPos);
 		break;
 
 	case WK_OBJ3D_MPSQUARE:
-		vSize = D3DXVECTOR3(256.0f, 64.0f, 0.0f);
-		pObj = m_MapParts.Create(nID, WK_TEX_SQUARE, vPos, vSize, MAPPARTS_SQUARE);
+		vSize = D3DXVECTOR3(64.0f, 64.0f, 0.0f);
+		pObj = m_MapParts.Create(nID, nTexID, vPos, vSize, MAPPARTS_SQUARE);
 		break;
 
 	case WK_OBJ3D_MPRUP:
 		vSize = D3DXVECTOR3(256.0f, 64.0f, 0.0f);
-		pObj = m_MapParts.Create(nID, WK_TEX_SQUARE, vPos, vSize, MAPPARTS_RUP);
+		pObj = m_MapParts.Create(nID, nTexID, vPos, vSize, MAPPARTS_RUP);
 		break;
 
 	case WK_OBJ3D_MPRDOWN:
 		vSize = D3DXVECTOR3(256.0f, 64.0f, 0.0f);
-		pObj = m_MapParts.Create(nID, WK_TEX_SQUARE, vPos, vSize, MAPPARTS_RDOWN);
+		pObj = m_MapParts.Create(nID, nTexID, vPos, vSize, MAPPARTS_RDOWN);
 		break;
 
 	default:

@@ -27,6 +27,16 @@ bool	CImage::InitializeN(LPCTSTR pszFName)
 		return false;
 	}
 	
+	// 元画像のサイズ等の情報を保持する
+	D3DXGetImageInfoFromFile(pszFName, &m_Info);
+	m_vSize.x = m_Info.Width;
+	m_vSize.y = m_Info.Height;
+	m_vHalfSize.x = m_vSize.x / 2.0f;
+	m_vHalfSize.y = m_vSize.y / 2.0f;
+
+	// 2の累乗に変換された後の画像サイズ等の情報を取得
+	m_pTexture->GetLevelDesc(0, &m_Desc);
+
 	return true;
 }
 
@@ -84,7 +94,7 @@ CImage* CImage::Create(LPCTSTR pszFName, int nPattern)
 	CImage* pImage = new CImage();
 	if(pImage)
 	{
-		if(!pImage->Initialize(pszFName))
+		if(!pImage->InitializeN(pszFName))
 		{
 			SAFE_DELETE(pImage);
 		}

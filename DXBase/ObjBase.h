@@ -62,12 +62,14 @@ protected:
 	CObjBase* m_pPrev;		// 前
 	// 管理用
 	int					m_nObjGroupID;			// グループ		
-	int					m_nObjTypeID;			// オブジェ種類ごとのID
+	int					m_nObjTypeID;			// グループ内での種類ごとのID
+	int					m_nIdentifID;			// 識別番号
 
 	// ステータス
 	// 動作
 	D3DXMATRIX			m_world;	// ワールド変換行列
 	D3DXVECTOR3			m_vPos;		// 座標
+	D3DXVECTOR3			m_vOldPos;	// 旧座標
 	D3DXVECTOR3			m_vAccel;	// 加速度
 	D3DXVECTOR3			m_vSpd;		// 速度
 	D3DXVECTOR3			m_vAngle;	// 角度
@@ -116,18 +118,22 @@ public:
 	CObjBase* GetPrev(){return m_pPrev;};		// 前のポインタを取得
 
 	D3DXVECTOR3 GetPos(){return m_vPos;};
+	D3DXVECTOR3 GetOldPos(){return m_vOldPos;};
 	D3DXVECTOR3 GetSpeed(void) {return m_vSpd;};		// 速度ゲット
 	D3DXVECTOR3 GetAccel(void) {return m_vAccel;};		// 加速度ゲット
 	D3DXVECTOR3 GetSize(){return m_vSize;};
 	D3DXVECTOR3 GetRadius(){return m_vRadius;};
 	D3DXMATRIX  GetMatrix(void) {return m_world;};		// ワールドマトリックスゲット
 	int			GetDrawType(){return m_nDrawType;};
-	int			GetGroupID(){return m_nObjGroupID;};
+	int			GetGroupID(){return m_nObjGroupID;};	// グループIDの取得
+	int			GetTypeID(){return m_nObjTypeID;};		// タイプIDの取得
+	int			GetIdentifID(){return m_nIdentifID;};
 	int			GetCollType(){return m_nCollBasePoint;};
 
 	// セッター
 	void SetNext(CObjBase* pObj){m_pNext = pObj;};
 	void SetPrev(CObjBase* pObj){m_pPrev = pObj;};
+	void SetPostoOldPos(){m_vOldPos = m_vPos;};		// 座標保存
 	void SetbAlpha(bool bAlpha){m_bAlphaBlend = bAlpha;};		// アルファブレンドの可否のセット
 	void SetDelete(){m_bDelete = true;};		// 消去準備
 	void SetbCull(bool bTrueIsBe){m_bCull = bTrueIsBe;};
@@ -137,6 +143,8 @@ public:
 		SetRadius(vSize /2.0f);
 	};
 	void SetRadius(D3DXVECTOR3 vRadius){m_vRadius = vRadius;};
+	void SetSpeed(D3DXVECTOR3 vSpd){m_vSpd = vSpd;};
+
 	// チェッカー
 	bool CheckbeDelete(){return m_bDelete;};		// デリートするか
 	

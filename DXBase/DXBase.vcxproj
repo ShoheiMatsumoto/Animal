@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Animal.cpp" />
     <ClCompile Include="AnimalColl.cpp" />
+    <ClCompile Include="AnimaruBase.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="Board2D.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -28,18 +28,25 @@
     <ClCompile Include="GameMgr.cpp" />
     <ClCompile Include="GameWnd.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Hebimaru.cpp" />
+    <ClCompile Include="Hosumaru.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Inumaru.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MapPartsBase.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Mimimaru.cpp" />
+    <ClCompile Include="Mokomaru.cpp" />
     <ClCompile Include="Moon.cpp" />
     <ClCompile Include="Morphing.cpp" />
     <ClCompile Include="MyCollision.cpp" />
     <ClCompile Include="MyHierarchy.cpp" />
     <ClCompile Include="MyMath.cpp" />
     <ClCompile Include="MySort.cpp" />
+    <ClCompile Include="Nekomaru.cpp" />
+    <ClCompile Include="Nezumaru.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="ObjBase.cpp" />
     <ClCompile Include="Object2D.cpp" />
@@ -50,6 +57,7 @@
     <ClCompile Include="PoliLine.cpp" />
     <ClCompile Include="PoliLine2D.cpp" />
     <ClCompile Include="PoliLine3D.cpp" />
+    <ClCompile Include="Sarumaru.cpp" />
     <ClCompile Include="SceneBase.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="SceneWk.cpp" />
@@ -61,19 +69,24 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
     <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="Tatsumaru.cpp" />
     <ClCompile Include="Test2D.cpp" />
     <ClCompile Include="TestBill.cpp" />
     <ClCompile Include="TexMgr.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="TitleFactory.cpp" />
+    <ClCompile Include="Toramaru.cpp" />
+    <ClCompile Include="Torimaru.cpp" />
+    <ClCompile Include="Urimaru.cpp" />
+    <ClCompile Include="Ushimaru.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WkFactory.cpp" />
     <ClCompile Include="WkFactoryI.cpp" />
     <ClCompile Include="WkFactoryN.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animal.h" />
     <ClInclude Include="AnimalColl.h" />
+    <ClInclude Include="AnimaruBase.h" />
     <ClInclude Include="Billboard.h" />
     <ClInclude Include="Board2D.h" />
     <ClInclude Include="Camera.h" />
@@ -90,18 +103,25 @@
     <ClInclude Include="GameMgr.h" />
     <ClInclude Include="GameWnd.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Hebimaru.h" />
+    <ClInclude Include="Hosumaru.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Inumaru.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="MapPartsBase.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Mimimaru.h" />
+    <ClInclude Include="Mokomaru.h" />
     <ClInclude Include="Moon.h" />
     <ClInclude Include="Morphing.h" />
     <ClInclude Include="MyCollision.h" />
     <ClInclude Include="MyHierarchy.h" />
     <ClInclude Include="MyMath.h" />
     <ClInclude Include="MySort.h" />
+    <ClInclude Include="Nekomaru.h" />
+    <ClInclude Include="Nezumaru.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="ObjBase.h" />
     <ClInclude Include="Object2D.h" />
@@ -113,6 +133,7 @@
     <ClInclude Include="PoliLine2D.h" />
     <ClInclude Include="PoliLine3D.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Sarumaru.h" />
     <ClInclude Include="SceneBase.h" />
     <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="SceneWk.h" />
@@ -124,11 +145,16 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundMgr.h" />
     <ClInclude Include="Stage.h" />
+    <ClInclude Include="Tatsumaru.h" />
     <ClInclude Include="Test2D.h" />
     <ClInclude Include="TestBill.h" />
     <ClInclude Include="TexMgr.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="TitleFactory.h" />
+    <ClInclude Include="Toramaru.h" />
+    <ClInclude Include="Torimaru.h" />
+    <ClInclude Include="Urimaru.h" />
+    <ClInclude Include="Ushimaru.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WkFactory.h" />
     <ClInclude Include="WkFactoryI.h" />

@@ -5,13 +5,16 @@ CMapPartsBase::CMapPartsBase(void)
 {
 }
 
-CMapPartsBase::CMapPartsBase(int nID, int nTexNum, D3DXVECTOR3 vPos) : CBillboard(nID, nTexNum)
+CMapPartsBase::CMapPartsBase(int nID, int nTexNum, D3DXVECTOR3 vPos, int nPartsType) : CBillboard(nID, nTexNum)
 {
 	m_nObjGroupID = OBJ3DGROUP_MAP;		// グループタイプ設定
+	m_nObjTypeID = nPartsType;			// タイプ設定
+
 	m_vPos = vPos;		// 後でベースに移したい
 
 	m_bBillBoard = false;	// ビルボード処理オフ
 	m_bAlphaBlend = false;	// アルファブレンドオフ
+	m_nCollBasePoint = COLLBASEPOINT_CENTER;		// あたり判定基準点
 }
 
 CMapPartsBase::~CMapPartsBase(void)
@@ -21,7 +24,7 @@ CMapPartsBase::~CMapPartsBase(void)
 // 生成
 CMapPartsBase*	CMapPartsBase::Create(int nID, int nTexNum, D3DXVECTOR3 vPos, D3DXVECTOR3 vSize, int nPartsType)
 {
-	CMapPartsBase* p = new CMapPartsBase(nID, nTexNum, vPos);
+	CMapPartsBase* p = new CMapPartsBase(nID, nTexNum, vPos, nPartsType);
 
 	p->Initialize(nPartsType, vSize);
 
@@ -32,13 +35,18 @@ CMapPartsBase*	CMapPartsBase::Create(int nID, int nTexNum, D3DXVECTOR3 vPos, D3D
 void		CMapPartsBase::Initialize(int nPartsType, D3DXVECTOR3 vSize)
 {
 	m_nPartsType = nPartsType;		// パーツタイプセット
+	
+
+
 	m_Board.ReSize(D3DXVECTOR2(vSize.x, vSize.y));		
-	m_nCollBasePoint = COLLBASEPOINT_BOTTOM;		// あたり判定基準点
 	SetSize(D3DXVECTOR3(vSize.x, vSize.y, 0.0f));
 	SetPosToMatrix();		// マトリックスへの座標セット
 
 	// ビルボード初期化
 	InitializeBillboard();
+
+	if(nPartsType == MAPPARTS_RDOWN)// テクスチャ反転
+		ReverseLR(TEX_LRREV);
 }
 
 // 更新

@@ -37,6 +37,12 @@ class CPlayer :
 protected:
 	// bool m_bInput[PINP_TYPE_MAX][PINP_BTN_MAX];
 	int		m_nMoveVecType;
+	int		m_nFallCnt;		// 落下カウント
+	float	m_fFallSpd;	// 落下移動調整用
+	float	m_fJumpPow;	// ジャンプ力
+	float	m_fMovePow; // 移動力
+	bool	m_bJump;	// ジャンプフラグ
+
 
 public:
 	CPlayer(void);
@@ -46,6 +52,7 @@ public:
 	CPlayer*	Create(int nID, int nTexNum, D3DXVECTOR3 vPos);
 	void		Initialize();
 	void		Update();
+	void		Draw();
 	void		HitUpdate(CObjBase* pObj, D3DXVECTOR3 vPos);
 	void		Release();
 
@@ -67,5 +74,7 @@ public:
 	bool		CheckJump();	// 跳んでるか
 	bool		CheckFall();	// 落ちてるか
 	
+	// 判定後処理小分け
+	void HitUDToMapParts(CObjBase* pObj, int nType, D3DXVECTOR3 vPos);
 };
 

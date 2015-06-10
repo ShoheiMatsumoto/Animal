@@ -20,7 +20,9 @@ protected:
 	CBoard2D			m_Board;	// ÇQDÉ{Å[ÉhèÓïÒ
 
 	DVERTEX m_verWk[4];
-
+	int m_nCurDivNum;		
+	int m_ntexLR;
+	int m_ntexTB;
 
 private:
 	D3DXVECTOR3	m_vLinePos;	
@@ -32,7 +34,7 @@ public:
 
 	void InitializeBillboard();
 	void DrawSetUp();
-	void virtual Draw();
+	virtual void  Draw();
 	void DrawEnd();
 	void BeginBillboard();
 	void EndBillboard();
@@ -58,5 +60,8 @@ public:
 	void SetLocalWkC();		
 	void SetLocalWkTL();
 	void SetLocalWkB();
+
+	void ReverseLR(int nType);		// ç∂âEîΩì]
+	void ReverseTB(int nType);		// è„â∫îΩì]
 };
 

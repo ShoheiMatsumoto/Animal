@@ -40,8 +40,8 @@ public:
 	void Initialize();		// 初期化
 	CFactoryBase* Create();			// 生成（自身）
 	void Release();			// 解放
-	virtual void Request2D(int nID, D3DXVECTOR3 vPos);//生成依頼
-	virtual void Request3D(int nID, D3DXVECTOR3 vPos);//生成依頼
+	virtual void Request2D(int nID, int nTexID, D3DXVECTOR3 vPos);//生成依頼
+	virtual void Request3D(int nID, int nTexID, D3DXVECTOR3 vPos);//生成依頼
 
 	// 拡張機能
 

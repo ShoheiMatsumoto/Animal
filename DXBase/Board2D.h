@@ -6,6 +6,21 @@
 #include "Graphics.h"
 #include "Image.h"
 
+
+enum
+{
+	TEX_LRNORMAL,
+	TEX_LRREV,
+	TEX_LRALL
+};
+
+enum
+{
+	TEX_TBNORMAL,
+	TEX_TB_REV,
+	TEX_TB_ALL
+};
+
 // 頂点フォーマット（ 頂点座標[2D] / 反射光 / テクスチャ座標 ）
 #define FVF_VERTEX_2D	( D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1 )
 
@@ -40,6 +55,9 @@ public:
 	int m_nG;
 	int m_nB;
 	int m_nAlpha;
+	int m_nCurDivNum;		
+	int m_ntexLR;
+	int m_ntexTB;
 
 	// ビルボード用変数
 	LPDIRECT3DVERTEXBUFFER9		m_pVertexBuffer;	// 頂点バッファオブジェクト
@@ -63,6 +81,8 @@ public:
 
 	// セッター
 	void SetNum(int);		// テクスチャ座標セット
+	void ReverseLR(int nType);		// 左右反転
+	void ReverseTB(int nType);		// 上下反転
 	void SetAlpha(float fAlpha);		// 透明度変更
 	void SetColor(int nR, int nG, int nB);
 	void ReSize(D3DXVECTOR2 vSize);		// 板ポリのリサイズ

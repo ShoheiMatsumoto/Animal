@@ -22,7 +22,7 @@ protected:
 
 public:
 	CMapPartsBase(void);
-	CMapPartsBase(int nID, int nTexNum, D3DXVECTOR3 vPos);
+	CMapPartsBase(int nID, int nTexNum, D3DXVECTOR3 vPos, int nPartsType);
 	virtual ~CMapPartsBase(void);
 
 	// Šî–{

@@ -91,8 +91,8 @@ bool CTitle::Initialize()
 	// 3D
 	D3DXVECTOR3 pv;
 	int ChipX, ChipY;
-	ChipX = SCREEN_WIDTH / CHIPSIZE_X;
-	ChipY = SCREEN_HEIGHT / CHIPSIZE_Y;
+	ChipX = (int)(SCREEN_WIDTH / CHIPSIZE_X);
+	ChipY = (int)(SCREEN_HEIGHT / CHIPSIZE_Y);
 
 	int ni = ChipY / 2;
 	int iamari = ChipY % 2;
@@ -114,14 +114,14 @@ bool CTitle::Initialize()
 	for(int j = -nj; j < nj + jamari; j++)
 	{
 		pv = D3DXVECTOR3(sx * j + rx, -288.0f + CHIPSIZE_X, j * 10.0f);
-		m_pFactory->Request3D(OBJ3D_TESTBILL, pv);
+		//m_pFactory->Request3D(OBJ3D_TESTBILL, pv);
 
 	}
 	
 
 	for(int i = 0; i < 1; i++)
 	{
-		m_pFactory->Request3D(OBJ3D_MOON, D3DXVECTOR3(32.0f * i, -288.0f + CHIPSIZE_X, 0.0f));
+		//m_pFactory->Request3D(OBJ3D_MOON, D3DXVECTOR3(32.0f * i, -288.0f + CHIPSIZE_X, 0.0f));
 	}
 	
 
@@ -132,8 +132,8 @@ bool CTitle::Initialize()
 
 	// スクリーン淵からカメラ座標へのベクトルを求める
 	float rot = 90.0f - FOVY / 2.0f;		// スクリーン淵からカメラへの角度
-	float x = -cos(rot * 3.14 / 180.0f);	// Xベクトル
-	float y = sin(rot * 3.14 / 180.0f);		// 本来はZ軸だがYとして扱う
+	float x = (float)(-cos(rot * 3.14 / 180.0f));	// Xベクトル
+	float y = (float)(sin(rot * 3.14 / 180.0f));		// 本来はZ軸だがYとして扱う
 	vNFrametoCam = D3DXVECTOR3(x, y, 0.0f);	// 淵からカメラへのベクトル
 
 	// スクリーン中心からカメラ、淵からカメラへの2直線の交点を求める
@@ -222,7 +222,7 @@ void CTitle::Update()
 
 	if(GETINPUT->GetKey(KEY_PRS, DIK_Q))
 	{
-		g_fOrt += 0.01;
+		g_fOrt += 0.01f;
 		if(g_fOrt > 1.0f)
 			g_fOrt = 1.0f;
 		m_pGraph->SetOrt(g_fOrt);

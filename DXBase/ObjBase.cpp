@@ -27,6 +27,9 @@ CObjBase::CObjBase(void)
 	m_nCollBasePoint = COLLBASEPOINT_CENTER;		// 中心
 
 	m_bDelete = false;
+
+	m_pNext = NULL;
+	m_pPrev = NULL;
 }
 
 CObjBase::CObjBase(int nID)
@@ -55,13 +58,18 @@ CObjBase::CObjBase(int nID)
 	m_nShadeTechNum = 0;
 
 	m_bDelete = false;
+
+	m_pNext = NULL;
+	m_pPrev = NULL;
 }
 
 CObjBase::~CObjBase(void)
 {
 	// リストから除外
-	m_pPrev->SetNext(m_pNext);		// 自分の前の次に自分の次をセット
-	m_pNext->SetPrev(m_pPrev);		// 自分の次の前に自分の前をセット
+	if(m_pPrev)
+		m_pPrev->SetNext(m_pNext);		// 自分の前の次に自分の次をセット
+	if(m_pNext)
+		m_pNext->SetPrev(m_pPrev);		// 自分の次の前に自分の前をセット
 }
 
 CObjBase* CObjBase::Create()

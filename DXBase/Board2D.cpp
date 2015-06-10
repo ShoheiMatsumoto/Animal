@@ -70,6 +70,9 @@ void CBoard2D::Initialize(DWORD dwImageType)
 	m_nG = 255;
 	m_nB = 255;
 	m_nAlpha = 255;
+	m_nCurDivNum = 0;
+	m_ntexLR = 0;
+	m_ntexTB = 0;
 	//return S_OK;
 }
 
@@ -177,14 +180,19 @@ void CBoard2D::SetNum(int nNum)
 {
 	//変数宣言
 	float a = 1.0f / m_nMaxPlain;	//式省略用変数
+	float sub;
 
 	if(nNum >= m_nMaxPlain)
 		return;
+	
+	sub = (nNum - m_nCurDivNum) * a;	// 移動差分
 
-	m_verWk[0].tex = D3DXVECTOR2(a * nNum     , 0.0f);
-	m_verWk[1].tex = D3DXVECTOR2(a * nNum + a , 0.0f);
-	m_verWk[2].tex = D3DXVECTOR2(a * nNum     , 1.0f);
-	m_verWk[3].tex = D3DXVECTOR2(a * nNum + a , 1.0f);
+	m_nCurDivNum = nNum;		// 現在分割位置更新
+
+	m_verWk[0].tex = D3DXVECTOR2(m_verWk[0].tex.x + sub     , 0.0f);
+	m_verWk[1].tex = D3DXVECTOR2(m_verWk[1].tex.x + sub , 0.0f);
+	m_verWk[2].tex = D3DXVECTOR2(m_verWk[2].tex.x + sub     , 1.0f);
+	m_verWk[3].tex = D3DXVECTOR2(m_verWk[3].tex.x + sub , 1.0f);
 }
 
 
@@ -258,3 +266,37 @@ void CBoard2D::SetColor(int nR, int nG, int nB)
 
 }
 
+// 左右反転
+void CBoard2D::ReverseLR(int nType)
+{
+	//変数宣言
+	float a = 1.0f / m_nMaxPlain;	//式省略用変数
+
+	if(nType >= TEX_LRALL || nType < 0)
+		return;
+
+	m_ntexLR = nType;
+
+	if(nType == TEX_LRNORMAL)
+	{
+		m_verWk[0].tex = D3DXVECTOR2(a * m_nCurDivNum     , 0.0f);
+		m_verWk[1].tex = D3DXVECTOR2(a * m_nCurDivNum + a , 0.0f);
+		m_verWk[2].tex = D3DXVECTOR2(a * m_nCurDivNum     , 1.0f);
+		m_verWk[3].tex = D3DXVECTOR2(a * m_nCurDivNum + a , 1.0f);
+	}
+	else
+	{
+		m_verWk[1].tex = D3DXVECTOR2(a * m_nCurDivNum     , 0.0f);
+		m_verWk[0].tex = D3DXVECTOR2(a * m_nCurDivNum + a , 0.0f);
+		m_verWk[3].tex = D3DXVECTOR2(a * m_nCurDivNum     , 1.0f);
+		m_verWk[2].tex = D3DXVECTOR2(a * m_nCurDivNum + a , 1.0f);
+	}
+
+	
+}
+
+// 上下反転
+void CBoard2D::ReverseTB(int nType)
+{
+
+}

@@ -76,7 +76,7 @@ public:
 	// virtual void SetViewProj();
 	virtual void DrawSetUp();
 	virtual void DrawEnd();
-	virtual void Draw(void);		// •s“§–¾•”•ª•`‰æ
+	virtual void Draw();		// •s“§–¾•”•ª•`‰æ
 	virtual void DrawAlpha(void);	// “§–¾•”•ª•`‰æ
 	virtual void Release(){};			// ‰ð•ú 
 
