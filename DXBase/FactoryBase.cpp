@@ -34,13 +34,13 @@ void CFactoryBase::Release()
 }
 
 // ê∂ê¨àÀóä
-void CFactoryBase::Request2D(int nID, int nTexID, D3DXVECTOR3 vPos)
+CObjBase* CFactoryBase::Request2D(int nID, int nTexID, D3DXVECTOR3 vPos)
 {
-	
+	return NULL;
 }
 
 // ê∂ê¨àÀóä
-void CFactoryBase::Request3D(int nID, int nTexID, D3DXVECTOR3 vPos)
+CObjBase* CFactoryBase::Request3D(int nID, int nTexID, D3DXVECTOR3 vPos)
 {
-	
+	return NULL;
 }

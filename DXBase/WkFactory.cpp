@@ -36,7 +36,7 @@ void CWkFactory::Release()
 }
 
 //生成依頼
-void CWkFactory::Request2D(int nID, int nTexID, D3DXVECTOR3 vPos)
+CObjBase* CWkFactory::Request2D(int nID, int nTexID, D3DXVECTOR3 vPos)
 {
 	CObjBase* pObj;
 
@@ -55,12 +55,18 @@ void CWkFactory::Request2D(int nID, int nTexID, D3DXVECTOR3 vPos)
 
 	// オブジェマネージャへ登録
 	CSceneBase::GetCurScene()->GetObjMgr()->EntryObj2D(pObj);
+
+	return pObj;
 }
 
-void CWkFactory::Request3D(int nID, int nTexID, D3DXVECTOR3 vPos)
+CObjBase* CWkFactory::Request3D(int nID, int nTexID, D3DXVECTOR3 vPos)
 {
 	CObjBase* pObj;
 	D3DXVECTOR3 vSize;
+
+	// アニマルスイッチ
+	if(nID >= WK_OBJ3D_NEZU && nID <= WK_OBJ3D_URI)
+		pObj = Req3DSwtAnimaru(nID, nTexID, vPos);
 
 	switch(nID)
 	{
@@ -99,9 +105,83 @@ void CWkFactory::Request3D(int nID, int nTexID, D3DXVECTOR3 vPos)
 
 	// オブジェマネージャへ登録
 	CSceneBase::GetCurScene()->GetObjMgr()->EntryObj3D(pObj);
+
+	return pObj;
 }
 
+// アニマル用リクエスト
+CObjBase* CWkFactory::Req3DSwtAnimaru(int nID, int nTexID, D3DXVECTOR3 vPos)
+{
+	CObjBase* pObj;
 
+	switch(nID)
+	{
+	case WK_OBJ3D_NEZU:
+		pObj = m_Nezu.Create(OBJ3DGROUP_ANIMARU, nID, WK_TEX_NEZU, vPos);
+		break;
+
+	case WK_OBJ3D_USHI:
+		pObj = m_Ushi.Create(OBJ3DGROUP_ANIMARU, nID, WK_TEX_USHI, vPos);
+
+		break;
+
+	case WK_OBJ3D_TORA:
+		pObj = m_Tora.Create(OBJ3DGROUP_ANIMARU, nID, WK_TEX_TORA, vPos);
+
+		break;
+
+	case WK_OBJ3D_MIMI:
+		pObj = m_Mimi.Create(OBJ3DGROUP_ANIMARU, nID, WK_TEX_MIMI, vPos);
+
+		break;
+
+	case WK_OBJ3D_TATSU:
+		pObj = m_Tatsu.Create(OBJ3DGROUP_ANIMARU, nID, WK_TEX_TATSU, vPos);
+
+		break;
+
+	case WK_OBJ3D_HEBI:
+		pObj = m_Hebi.Create(OBJ3DGROUP_ANIMARU, nID, WK_TEX_HEBI, vPos);
+
+		break;
+
+	case WK_OBJ3D_UMA:
+		pObj = m_Hosu.Create(OBJ3DGROUP_ANIMARU, nID, WK_TEX_UMA, vPos);
+
+		break;
+
+	case WK_OBJ3D_MERRY:
+		pObj = m_Moko.Create(OBJ3DGROUP_ANIMARU, nID, WK_TEX_MERRY, vPos);
+
+		break;
+
+	case WK_OBJ3D_SARU:
+		pObj = m_Saru.Create(OBJ3DGROUP_ANIMARU, nID, WK_TEX_SARU, vPos);
+
+		break;
+
+	case WK_OBJ3D_TORI:
+		pObj = m_Tori.Create(OBJ3DGROUP_ANIMARU, nID, WK_TEX_TORI, vPos);
+
+		break;
+
+	case WK_OBJ3D_INU:
+		pObj = m_Inu.Create(OBJ3DGROUP_ANIMARU, nID, WK_TEX_INU, vPos);
+
+		break;
+
+	case WK_OBJ3D_URI:
+		pObj = m_Uri.Create(OBJ3DGROUP_ANIMARU, nID, WK_TEX_URI, vPos);
+
+		break;
+
+	default:
+
+		break;
+	}
+
+	return pObj;
+}
 
 
 

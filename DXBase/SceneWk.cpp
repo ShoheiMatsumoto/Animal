@@ -51,7 +51,6 @@ bool CSceneWk::Initialize()
 	m_pTexMgr = m_pTexMgr->Create(T_TEX_MAX);
 	
 	// テクスチャエントリー
-	m_pTexMgr->Entry(WK_TEX_0, _T("../Data/Image/ButtonCircle.png"), 1);
 	m_pTexMgr->Entry(WK_TEX_MOON, _T("../Data/Image/moon.png"), 1);
 	m_pTexMgr->Entry(WK_TEX_SQUARE, _T("../Data/Image/UI/ButtonSquare.png"), 1);
 	m_pTexMgr->Entry(WK_TEX_PLAYER, _T("../Data/Image/player_def.png"), 1);
@@ -335,9 +334,14 @@ void CSceneWk::CheckRunHit()
 	// あたり判定走査
 	Collision Col;
 	CAnimalColl ACol;
+	CObjBase* pPlTop, *pMapTop, *pAniTop;
+	pPlTop = m_pObjMgr->GetListTop3D(OBJ3DGROUP_PLAYER);
+	pMapTop = m_pObjMgr->GetListTop3D(OBJ3DGROUP_MAP);
+	pAniTop = m_pObjMgr->GetListTop3D(OBJ3DGROUP_ANIMARU);
 	
 	//Col.CollSquareRunBill(m_pObjMgr->GetListTop3D(OBJ3DGROUP_PLAYER), m_pObjMgr->GetListTop3D(OBJ3DGROUP_MAP));
-	ACol.CheckRunToMap(m_pObjMgr->GetListTop3D(OBJ3DGROUP_PLAYER), m_pObjMgr->GetListTop3D(OBJ3DGROUP_MAP));
+	ACol.CheckRunToMap(pPlTop, pMapTop);
+	ACol.CheckRunToMap(pAniTop, pMapTop);
 }
 
 

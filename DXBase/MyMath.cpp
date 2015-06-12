@@ -75,3 +75,30 @@ void CMyMath::Hermite3D(float* x, float* y, float* z, float t, KEY Key[2], KEY V
 		+ ((1.0f - t) * (1.0f - t)) * t * VKey[0].z
 		+ (t - 1.0f) * (t * t) * VKey[1].z;
 };
+
+// 一方向線形補間
+float		LinerInterPos1V(float fSPos, float fGPos, float fRate)
+{
+	float fSub = fGPos - fSPos;
+
+	return fSub * fRate;
+}
+
+// 二方向線形補間
+D3DXVECTOR3 LinerInterPol2V(D3DXVECTOR3 vSpos, D3DXVECTOR3 vGPos, float fRate)
+{
+	D3DXVECTOR3 vSub = vGPos - vSpos;
+	vSub.z = 0.0f;
+
+	return vSub * fRate;
+}
+
+// 三方向線形補間
+D3DXVECTOR3 LinerInterPol3V(D3DXVECTOR3 vSpos, D3DXVECTOR3 vGPos, float fRate)
+{
+	D3DXVECTOR3 vSub = vGPos - vSpos;
+
+	return vSub * fRate;
+}
+
+// eof

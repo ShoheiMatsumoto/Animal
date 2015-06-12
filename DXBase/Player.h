@@ -2,7 +2,7 @@
 #pragma once
 
 #include "billboard.h"
-
+#include "AnimaruBase.h"
 
 //enum
 //{
@@ -36,13 +36,12 @@ class CPlayer :
 {
 protected:
 	// bool m_bInput[PINP_TYPE_MAX][PINP_BTN_MAX];
-	int		m_nMoveVecType;
-	int		m_nFallCnt;		// 落下カウント
-	float	m_fFallSpd;	// 落下移動調整用
-	float	m_fJumpPow;	// ジャンプ力
-	float	m_fMovePow; // 移動力
-	bool	m_bJump;	// ジャンプフラグ
+	CContSt CSt;
 
+	// アニマル関連
+	CAnimaruBase* m_pAnimaruBox[12];		// 保存場所
+	CAnimaruBase* m_pAnimaruSlot[3];		// スロット
+	D3DXVECTOR3		m_vPrePos;			// 追従用座標
 
 public:
 	CPlayer(void);
@@ -76,5 +75,10 @@ public:
 	
 	// 判定後処理小分け
 	void HitUDToMapParts(CObjBase* pObj, int nType, D3DXVECTOR3 vPos);
+
+	// アニまる関連
+	void SetAnimaru();			// アニマル初期セット
+	void CheckAniDist();		// 距離判定
+	void PreservPos();			// 座標保存
 };
 

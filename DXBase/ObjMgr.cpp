@@ -180,9 +180,12 @@ void CObjMgr::Update2D()
 
 		while(pObj)
 		{
-			pObj->SetPostoOldPos();
-			pObj->Update();				// 更新
-			pObj = pObj->GetNext();		// 次のオブジェを取得
+			if(pObj->GetbUse())
+			{
+				pObj->SetPostoOldPos();
+				pObj->Update();				// 更新
+				pObj = pObj->GetNext();		// 次のオブジェを取得
+			}
 		}
 	}
 }
@@ -201,9 +204,13 @@ void CObjMgr::Update3D()
 
 		while(pObj)
 		{
-			pObj->SetPostoOldPos();		// 旧座標更新
-			pObj->Update();				// 更新
+			if(pObj->GetbUse())
+			{
+				pObj->SetPostoOldPos();		// 旧座標更新
+				pObj->Update();				// 更新
+			}
 			pObj = pObj->GetNext();		// 次のオブジェを取得
+			
 		}
 	}
 }
@@ -245,7 +252,8 @@ void CObjMgr::Draw2D()
 			m_nCurDrawType = nDrawType;		// 現在描画タイプの変更
 		}
 	
-		m_pObj2DDraw[i]->Draw();
+		if(m_pObj2DDraw[i]->GetbUse())
+			m_pObj2DDraw[i]->Draw();
 
 		// 次があるなら
 		if(m_pObj2DDraw[i + 1])
@@ -312,7 +320,8 @@ void CObjMgr::Draw3D()
 				m_nCurDrawType = nDrawType;		// 現在描画タイプの変更
 			}
 
-			pObj->Draw();				// 描画
+			if(pObj->GetbUse())
+				pObj->Draw();				// 描画
 			
 			// 次があるなら
 			if(pObj->GetNext())

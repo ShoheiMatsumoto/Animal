@@ -35,7 +35,7 @@ void CTitleFactory::Release()
 }
 
 //生成依頼
-void CTitleFactory::Request2D(int nID, int nTexID, D3DXVECTOR3 vPos)
+CObjBase* CTitleFactory::Request2D(int nID, int nTexID, D3DXVECTOR3 vPos)
 {
 	CObjBase* pObj;
 
@@ -77,9 +77,11 @@ void CTitleFactory::Request2D(int nID, int nTexID, D3DXVECTOR3 vPos)
 
 	// オブジェマネージャへ登録
 	CSceneBase::GetCurScene()->GetObjMgr()->EntryObj2D(pObj);
+
+	return pObj;
 }
 
-void CTitleFactory::Request3D(int nID, int nTexID, D3DXVECTOR3 vPos)
+CObjBase* CTitleFactory::Request3D(int nID, int nTexID, D3DXVECTOR3 vPos)
 {
 	CObjBase* pObj;
 
@@ -100,6 +102,8 @@ void CTitleFactory::Request3D(int nID, int nTexID, D3DXVECTOR3 vPos)
 
 	// オブジェマネージャへ登録
 	CSceneBase::GetCurScene()->GetObjMgr()->EntryObj3D(pObj);
+
+	return pObj;
 }
 
 

@@ -1,6 +1,8 @@
 #include "ObjBase.h"
 #include "SceneBase.h"
 
+int CObjBase::m_nIdentifCnt = 0;
+
 CObjBase::CObjBase(void)
 {
 	D3DXMatrixIdentity(&m_world);		// ワールド変換行列初期化
@@ -34,7 +36,12 @@ CObjBase::CObjBase(void)
 
 CObjBase::CObjBase(int nID)
 {
+
 	m_nObjTypeID = nID;
+	m_nIdentifID = m_nIdentifCnt;
+	m_nIdentifCnt ++;	// 個別識別用IDカウンタ
+
+
 	D3DXMatrixIdentity(&m_world);		// ワールド変換行列初期化
 
 	m_vPos.x = m_world._41;
@@ -70,6 +77,8 @@ CObjBase::~CObjBase(void)
 		m_pPrev->SetNext(m_pNext);		// 自分の前の次に自分の次をセット
 	if(m_pNext)
 		m_pNext->SetPrev(m_pPrev);		// 自分の次の前に自分の前をセット
+
+	m_nIdentifCnt --;	// 個別識別用IDカウンタ
 }
 
 CObjBase* CObjBase::Create()

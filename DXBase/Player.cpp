@@ -3,52 +3,17 @@
 #include "MapPartsBase.h"
 #include "AnimalColl.h"
 #include "SceneBase.h"
+#include "WkFactory.h"
 
 
-// 定数定義
-// 移動系
-#define PLAYER_ADDMSPD (0.1f)
-#define PLAYER_MOVESPDMAX (4.0f)
-#define PLAYER_BREAKERATE (1.5f)
-#define PLAYER_BRKSPD (0.1f)
 
-// ジャンプ関連
-
-#define PLAYER_ADDJSPD ()
-#define PLAYER_FFIRSTSPD (0.5f)
-#define PLAYER_ADDFSPD (0.4f / 60.0f)
-#define PLAYER_FSPDMAX (10.0f)
-#define PLAYER_JUMPPOW (10.0f)
-#define PLAYER_JUMPBRK (0.3f)
-float g_fJumpMax = PLAYER_JUMPPOW;
-float g_fJumpBrk = PLAYER_JUMPBRK;
-float g_fAddfSpd = PLAYER_ADDFSPD;
-float g_ffSpdMax = PLAYER_FSPDMAX;
-float g_fFirSpd = PLAYER_FFIRSTSPD;
+float g_fJumpMax; 
+float g_fJumpBrk; 
+float g_fAddfSpd; 
+float g_ffSpdMax; 
+float g_fFirSpd;  
 //float g_fSpdMax = 5.0f;
 
-
-
-enum
-{
-	PLAYER_MOVEVEC_TYPE_RIGHT,
-	PLAYER_MOVEVEC_TYPE_LEFT,
-
-	
-};
-
-// プレイヤー状態列挙
-enum
-{
-	PLST_STAND = 0,		// 立ち
-	PLST_WALK,			// 歩き
-	PLST_RUN,			// 走り
-	PLST_ACTION,		// アクション
-	PLST_JUMPUP,			// ジャンプ
-	PLST_FALL,			// 落下
-
-	PLST_ALL
-};
 
 CPlayer::CPlayer(void)
 {
@@ -68,6 +33,7 @@ CPlayer*	CPlayer::Create(int nID, int nTexNum, D3DXVECTOR3 vPos)
 {
 	CPlayer* p = new CPlayer(nID, nTexNum);
 
+	p->m_vPos = vPos;
 	p->Initialize();
 
 	return p;
@@ -97,15 +63,25 @@ void		CPlayer::Initialize()
 
 	m_bAlphaBlend = false;
 
-	m_nObjStatus = PLST_STAND;
+	m_nObjStatus = ST_STAND;
 	m_vSpd.y = -1.0f;
 	
 	// プレイヤー固有ステータス
-	m_nMoveVecType = PLAYER_MOVEVEC_TYPE_RIGHT;		// 右向き
-	m_fFallSpd = PLAYER_ADDFSPD;
-	m_fJumpPow = 0.0f;
-	m_fMovePow = 0.0f;
-	m_bJump = false;
+	CSt.m_nMoveVecType = MOVEVEC_TYPE_RIGHT;		// 右向き
+	CSt.m_fFallSpd = ADDFSPD;
+	CSt.m_fJumpPow = 0.0f;
+	CSt.m_fMovePow = 0.0f;
+	CSt.m_bJump = false;
+
+	// アニまるセット
+	SetAnimaru();
+
+
+	/*g_fJumpMax = JUMPPOW;
+	g_fJumpBrk = JUMPBRK;
+	g_fAddfSpd = ADDFSPD;
+	g_ffSpdMax = FSPDMAX;
+	g_fFirSpd = FFIRSTSPD;*/
 }
 
 // 更新
@@ -114,7 +90,7 @@ void		CPlayer::Update()
 	if(GETINPUT->GetKey(KEY_TRG, DIK_1))
 		m_vPos = D3DXVECTOR3(0.0f, 280.0f, 0.0f);
 		
-	if(GETINPUT->GetKey(KEY_TRG, DIK_O))
+	/*if(GETINPUT->GetKey(KEY_TRG, DIK_O))
 		g_fJumpMax += 0.1f;
 
 	if(GETINPUT->GetKey(KEY_TRG, DIK_L))
@@ -142,7 +118,7 @@ void		CPlayer::Update()
 		g_fAddfSpd += 0.1f;
 
 	if(GETINPUT->GetKey(KEY_TRG, DIK_G))
-		g_fAddfSpd -= 0.1f;
+		g_fAddfSpd -= 0.1f;*/
 
 	Control();
 
@@ -170,40 +146,40 @@ void		CPlayer::Draw()
 	CGraphics::GetDevice()->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, m_verWk, sizeof(DVERTEX));// ポリゴン描画
 
 
-	TCHAR		m_szDebug[4096];
-	
-	TCHAR	str[256];
-	
-	// 各種デバッグ用数値表示
-	m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
-	_stprintf(str, _T("OL ジャンプマックス:%f"), g_fJumpMax);
-	lstrcat(m_szDebug, str);
-	CSceneBase::GetThis()->GetGraph()->DrawText(10, 40, m_szDebug);
+	//TCHAR		m_szDebug[4096];
+	//
+	//TCHAR	str[256];
+	//
+	//// 各種デバッグ用数値表示
+	//m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
+	//_stprintf(str, _T("OL ジャンプマックス:%f"), g_fJumpMax);
+	//lstrcat(m_szDebug, str);
+	//CSceneBase::GetThis()->GetGraph()->DrawText(10, 40, m_szDebug);
 
-	m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
-	_stprintf(str, _T("IK ジャンプブレーキ:%f"), g_fJumpBrk);
-	lstrcat(m_szDebug, str);
-	CSceneBase::GetThis()->GetGraph()->DrawText(10, 60, m_szDebug);
-	
-	m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
-	_stprintf(str, _T("UJ 落下マックス:%f"), g_ffSpdMax);
-	lstrcat(m_szDebug, str);
-	CSceneBase::GetThis()->GetGraph()->DrawText(10, 80, m_szDebug);
+	//m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
+	//_stprintf(str, _T("IK ジャンプブレーキ:%f"), g_fJumpBrk);
+	//lstrcat(m_szDebug, str);
+	//CSceneBase::GetThis()->GetGraph()->DrawText(10, 60, m_szDebug);
+	//
+	//m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
+	//_stprintf(str, _T("UJ 落下マックス:%f"), g_ffSpdMax);
+	//lstrcat(m_szDebug, str);
+	//CSceneBase::GetThis()->GetGraph()->DrawText(10, 80, m_szDebug);
 
-	m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
-	_stprintf(str, _T("TG 落下加算:%f"), g_fAddfSpd);
-	lstrcat(m_szDebug, str);
-	CSceneBase::GetThis()->GetGraph()->DrawText(10, 100, m_szDebug);
+	//m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
+	//_stprintf(str, _T("TG 落下加算:%f"), g_fAddfSpd);
+	//lstrcat(m_szDebug, str);
+	//CSceneBase::GetThis()->GetGraph()->DrawText(10, 100, m_szDebug);
 
-	m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
-	_stprintf(str, _T("YH 落下初速:%f"), g_fFirSpd);
-	lstrcat(m_szDebug, str);
-	CSceneBase::GetThis()->GetGraph()->DrawText(10, 120, m_szDebug);
+	//m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
+	//_stprintf(str, _T("YH 落下初速:%f"), g_fFirSpd);
+	//lstrcat(m_szDebug, str);
+	//CSceneBase::GetThis()->GetGraph()->DrawText(10, 120, m_szDebug);
 
-	m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
-	_stprintf(str, _T("YH 落下速度:%f"), m_fFallSpd);
-	lstrcat(m_szDebug, str);
-	CSceneBase::GetThis()->GetGraph()->DrawText(10, 140, m_szDebug);
+	//m_szDebug[0] = _T('\0');	// デバッグ文字列初期化
+	//_stprintf(str, _T("YH 落下速度:%f"), m_fFallSpd);
+	//lstrcat(m_szDebug, str);
+	//CSceneBase::GetThis()->GetGraph()->DrawText(10, 140, m_szDebug);
 	
 }
 
@@ -219,20 +195,20 @@ void		CPlayer::Release()
 // 立ち
 void		CPlayer::BacktoStand()
 {
-	if(m_fMovePow > 0.0f)
+	if(CSt.m_fMovePow > 0.0f)
 	{
-		m_fMovePow -= PLAYER_BRKSPD;
-		if(m_fMovePow <= 0.0f)
-			m_fMovePow = 0.0f;
+		CSt.m_fMovePow -= BRKSPD;
+		if(CSt.m_fMovePow <= 0.0f)
+			CSt.m_fMovePow = 0.0f;
 	}
 
-	if(m_fMovePow < 0.0f)
+	if(CSt.m_fMovePow < 0.0f)
 	{
-		m_fMovePow += PLAYER_BRKSPD;
-		if(m_fMovePow >= 0.0f)
-			m_fMovePow = 0.0f;
+		CSt.m_fMovePow += BRKSPD;
+		if(CSt.m_fMovePow >= 0.0f)
+			CSt.m_fMovePow = 0.0f;
 	}
-	m_vSpd.x = m_fMovePow;
+	m_vSpd.x = CSt.m_fMovePow;
 }
 
 // 移動
@@ -244,18 +220,18 @@ void		CPlayer::Move()
 		//if(GETINPUT->GetKey(KEY_TRG, DIK_RIGHT))
 			//ReverseLR(TEX_LRREV);
 
-		if(m_fMovePow < -PLAYER_MOVESPDMAX / PLAYER_BREAKERATE)
-			m_fMovePow = -PLAYER_MOVESPDMAX / PLAYER_BREAKERATE;
+		if(CSt.m_fMovePow < -MOVESPDMAX / BREAKERATE)
+			CSt.m_fMovePow = -MOVESPDMAX / BREAKERATE;
 		
 
-		if(m_fMovePow <= PLAYER_MOVESPDMAX)
+		if(CSt.m_fMovePow <= MOVESPDMAX)
 		{
-			m_fMovePow += PLAYER_ADDMSPD;		// 加速
+			CSt.m_fMovePow += ADDMSPD;		// 加速
 			
 		}
 		else
 		{
-			m_fMovePow = PLAYER_MOVESPDMAX;	// 最大速度
+			CSt.m_fMovePow = MOVESPDMAX;	// 最大速度
 			
 		}
 	}
@@ -266,29 +242,29 @@ void		CPlayer::Move()
 		//if(GETINPUT->GetKey(KEY_TRG, DIK_LEFT))
 			
 
-		if(m_fMovePow > PLAYER_MOVESPDMAX / PLAYER_BREAKERATE)
-			m_fMovePow = PLAYER_MOVESPDMAX / PLAYER_BREAKERATE;
+		if(CSt.m_fMovePow > MOVESPDMAX / BREAKERATE)
+			CSt.m_fMovePow = MOVESPDMAX / BREAKERATE;
 
-		if(m_fMovePow >= -PLAYER_MOVESPDMAX)
+		if(CSt.m_fMovePow >= -MOVESPDMAX)
 		{
-			m_fMovePow -= PLAYER_ADDMSPD;		// 加速
+			CSt.m_fMovePow -= ADDMSPD;		// 加速
 		}
 		else
 		{
-			m_fMovePow = -PLAYER_MOVESPDMAX;	// 最大速度
+			CSt.m_fMovePow = -MOVESPDMAX;	// 最大速度
 		}
 	}
 
-	if(m_fMovePow > 0.0f)
+	if(CSt.m_fMovePow > 0.0f)
 	{
 		ReverseLR(TEX_LRREV);
 	}
-	else if(m_fMovePow < 0.0f)
+	else if(CSt.m_fMovePow < 0.0f)
 	{
 		ReverseLR(TEX_LRNORMAL);
 	}
 
-	m_vSpd.x = m_fMovePow;
+	m_vSpd.x = CSt.m_fMovePow;
 
 	
 }
@@ -298,13 +274,10 @@ void		CPlayer::PushJump()
 {
 	if(GETINPUT->GetKey(KEY_TRG, DIK_SPACE))
 	{
-		if(!m_bJump)
+		if(!CSt.m_bJump)
 		{
-			m_nObjStatus = PLST_JUMPUP;		// ステータスセット
-			//m_fJumpPow = PLAYER_JUMPPOW;	// 初期パワーセット
-			m_fJumpPow = g_fJumpMax;
-			
-			
+			m_nObjStatus = ST_JUMPUP;		// ステータスセット
+			CSt.m_fJumpPow = JUMPPOW;	// 初期パワーセット
 		}
 	}
 
@@ -314,30 +287,25 @@ void		CPlayer::PushJump()
 // ジャンプ
 void		CPlayer::Jump()
 {
-	m_vSpd.y = m_fJumpPow;		// スピードに変換
+	m_vSpd.y = CSt.m_fJumpPow;		// スピードに変換
 
-	//m_fJumpPow -= PLAYER_JUMPBRK;
-	//if(m_fJumpPow >= 2.0f)
-	//{
-		m_fJumpPow -= g_fJumpBrk;
-	//}
-	
+	CSt.m_fJumpPow -= JUMPBRK;
 
-	if(m_fJumpPow <= 0.0f)
+	if(CSt.m_fJumpPow <= 0.0f)
 	{
-		m_fFallSpd = 0.0f;
-		m_bJump = true;
+		CSt.m_fFallSpd = 0.0f;
+		CSt.m_bJump = true;
 	}
 }
 	
 // 落下
 void		CPlayer::Fall()
 {
-	m_vSpd.y = m_fFallSpd;
+	m_vSpd.y = CSt.m_fFallSpd;
 
-	m_fFallSpd -= 0.3f;
-	if(m_fFallSpd <= -PLAYER_FSPDMAX)
-		m_fFallSpd = -PLAYER_FSPDMAX;
+	CSt.m_fFallSpd -= 0.3f;
+	if(CSt.m_fFallSpd <= -FSPDMAX)
+		CSt.m_fFallSpd = -FSPDMAX;
 
 	
 }
@@ -362,7 +330,7 @@ void		CPlayer::Control()
 
 	switch(m_nObjStatus)
 	{
-	case PLST_STAND:
+	case ST_STAND:
 		BacktoStand();
 		Move();			// 移動
 		Fall();			// 自然落下
@@ -370,26 +338,26 @@ void		CPlayer::Control()
 		PushAct();		// アクションはじめ
 		break;
 
-	case PLST_RUN:
+	case ST_RUN:
 		Move();
 		Fall();			// 自然落下
 		PushJump();
 		PushAct();
 		break;
 
-	case PLST_ACTION:
+	case ST_ACTION:
 		Action();
 		Fall();			// 自然落下
 		break;
 
-	case PLST_JUMPUP:
+	case ST_JUMPUP:
 		Move();
 		Jump();
 		//Fall();			// 自然落下
 		PushAct();
 		break;
 
-	case PLST_FALL:
+	case ST_FALL:
 		Fall();			// 自然落下
 		break;
 	default:
@@ -403,16 +371,16 @@ void		CPlayer::Control()
 // プレイヤーが置かれている環境をチェックし、ステータスを変更
 void			CPlayer::CheckEnvir()
 {
-	m_nObjStatus = PLST_STAND;		// 
+	m_nObjStatus = ST_STAND;		// 
 
 	if(CheckRun())
-		m_nObjStatus = PLST_RUN;
+		m_nObjStatus = ST_RUN;
 
 	if(CheckJump())
-		m_nObjStatus = PLST_JUMPUP;
+		m_nObjStatus = ST_JUMPUP;
 
 	if(CheckFall())
-		m_nObjStatus = PLST_FALL;
+		m_nObjStatus = ST_FALL;
 
 	
 
@@ -441,7 +409,7 @@ bool		CPlayer::CheckRun()
 bool		CPlayer::CheckJump()
 {
 	// 上方向のスピードが出てる
-	if(m_fJumpPow > 0.0f)
+	if(CSt.m_fJumpPow > 0.0f)
 		return true;
 
 	return false;
@@ -451,7 +419,7 @@ bool		CPlayer::CheckJump()
 bool		CPlayer::CheckFall()
 {
 	// 下方向の初速以上のスピードが出てる
-	if(m_fFallSpd < -(PLAYER_FFIRSTSPD + 1.0f))
+	if(CSt.m_fFallSpd < -(FFIRSTSPD + 1.0f))
 		return true;
 
 	return false;
@@ -490,27 +458,83 @@ void CPlayer::HitUDToMapParts(CObjBase* pObj, int nType, D3DXVECTOR3 vPos)
 		vWkPos = Coll.GetMapBoxCrossPos(this, (CMapPartsBase*)pObj, &nLine);
 		if(nLine == CROSSLINE_T)
 		{	
-			m_fFallSpd = -PLAYER_FFIRSTSPD;
-			m_bJump = false;
+			CSt.m_fFallSpd = -FFIRSTSPD;
+			CSt.m_bJump = false;
 		}
 		if(nLine == CROSSLINE_L || nLine == CROSSLINE_R)
 		{	
-			m_fMovePow = 0.0f;
+			CSt.m_fMovePow = 0.0f;
 		}
 		m_vPos = vPos;
 		break;
 
 	case MAPPARTS_RUP:
-		m_fFallSpd = -PLAYER_FFIRSTSPD;
+		CSt.m_fFallSpd = -FFIRSTSPD;
 		m_vPos = vPos;
-		m_bJump = false;
+		CSt.m_bJump = false;
 		break;
 
 	case MAPPARTS_RDOWN:
-		m_fFallSpd = -PLAYER_FFIRSTSPD;
+		CSt.m_fFallSpd = -FFIRSTSPD;
 		m_vPos = vPos;
-		m_bJump = false;
+		CSt.m_bJump = false;
 		break;
 	}
 }
+
+// ↓アニマル関連
+void CPlayer::SetAnimaru()
+{
+	// アニまる準備
+	for(int i = 0; i < 12; i++)
+		m_pAnimaruBox[i] = NULL;	// 初期化
+	for(int i = 0; i < 3; i++)
+		m_pAnimaruSlot[i] = NULL;
+
+	// 使用可能かの状態を外部から読み込み
+
+	// 生成
+	D3DXVECTOR3 vPos = D3DXVECTOR3(m_vPos.x - 10.0f, 0.0f, 0.0f);
+	CFactoryBase* pFac;
+	pFac = CSceneBase::GetCurScene()->GetFactory();
+	m_pAnimaruBox[ANIMARU_NO_NEZU] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_NEZU, 0, vPos);
+	m_pAnimaruBox[ANIMARU_NO_USHI] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_USHI, 0, vPos);
+	m_pAnimaruBox[ANIMARU_NO_TORA] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_TORA, 0, vPos);
+	m_pAnimaruBox[ANIMARU_NO_MIMI] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_MIMI, 0, vPos);
+	m_pAnimaruBox[ANIMARU_NO_TATSU] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_TATSU, 0, vPos);
+	m_pAnimaruBox[ANIMARU_NO_HEBI] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_HEBI, 0, vPos);
+	m_pAnimaruBox[ANIMARU_NO_UMA] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_UMA, 0, vPos);
+	m_pAnimaruBox[ANIMARU_NO_MOKO] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_MERRY, 0, vPos);
+	m_pAnimaruBox[ANIMARU_NO_SARU] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_SARU, 0, vPos);
+	m_pAnimaruBox[ANIMARU_NO_TORI] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_TORI, 0, vPos);
+	m_pAnimaruBox[ANIMARU_NO_INU] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_INU, 0, vPos);
+	m_pAnimaruBox[ANIMARU_NO_URI] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_URI, 0, vPos);
+
+	for(int i = 0; i < ANIMARU_NO_MAX; i++)
+		m_pAnimaruBox[i]->SetbUse(false);		// とりあえず非更新状態
+
+	// 外部から現在スロットにセットされているアニまるをもらいスロットにセット
+	// 今はとりあえず　ね、うし、とら
+	m_pAnimaruSlot[0] = m_pAnimaruBox[ANIMARU_NO_NEZU];
+	m_pAnimaruSlot[1] = m_pAnimaruBox[ANIMARU_NO_USHI];
+	m_pAnimaruSlot[2] = m_pAnimaruBox[ANIMARU_NO_TORA];
+
+	m_pAnimaruSlot[0]->SetbUse(true);
+	m_pAnimaruSlot[1]->SetbUse(true);
+	m_pAnimaruSlot[2]->SetbUse(true);
+}
+
+// 距離判定
+void CPlayer::CheckAniDist()
+{
+	// 一匹目との距離を測る
+
+}
+
+// 座標保存
+void CPlayer::PreservPos()
+{
+	m_vPrePos = m_vPos;
+}
+
 // eof

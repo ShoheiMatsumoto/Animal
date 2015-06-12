@@ -6,6 +6,20 @@
 #include "Player.h"
 #include "MapPartsBase.h"
 
+#include "Nezumaru.h"
+#include "Ushimaru.h"
+#include "Toramaru.h"
+#include "Mimimaru.h"
+#include "Tatsumaru.h"
+#include "Hebimaru.h"
+#include "Hosumaru.h"
+#include "Mokomaru.h"
+#include "Sarumaru.h"
+#include "Torimaru.h"
+#include "Inumaru.h"
+#include "Urimaru.h"
+
+
 // ゲームに使用するオブジェクトの種類
 enum
 {
@@ -27,6 +41,19 @@ enum
 	WK_OBJ3D_MPRUP,
 	WK_OBJ3D_MPRDOWN,
 
+	WK_OBJ3D_NEZU,
+	WK_OBJ3D_USHI,
+	WK_OBJ3D_TORA,
+	WK_OBJ3D_MIMI,
+	WK_OBJ3D_TATSU,
+	WK_OBJ3D_HEBI,
+	WK_OBJ3D_UMA,
+	WK_OBJ3D_MERRY,
+	WK_OBJ3D_SARU,
+	WK_OBJ3D_TORI,
+	WK_OBJ3D_INU,
+	WK_OBJ3D_URI,
+
 	WK_OBJ3D_MAX,
 };
 
@@ -40,6 +67,20 @@ protected:
 	CPlayer		m_Player;
 	CMapPartsBase m_MapParts;
 
+	CNezumaru	m_Nezu;
+	CUshimaru	m_Ushi;
+	CToramaru	m_Tora;
+	CMimimaru	m_Mimi;
+	CTatsumaru	m_Tatsu;
+	CHebimaru	m_Hebi;
+	CHosumaru	m_Hosu;
+	CMokomaru	m_Moko;
+	CSarumaru	m_Saru;
+	CTorimaru	m_Tori;
+	CInumaru	m_Inu;
+	CUrimaru	m_Uri;
+
+
 public:
 	CWkFactory(void);
 	virtual ~CWkFactory(void);
@@ -48,9 +89,10 @@ public:
 	void Initialize();		// 初期化
 	static CWkFactory* Create();			// 生成（自身）
 	void Release();			// 解放
-	void Request2D(int nID, int nTexID, D3DXVECTOR3 vPos);//生成依頼
-	void Request3D(int nID, int nTexID, D3DXVECTOR3 vPos);//生成依頼
-
+	CObjBase* Request2D(int nID, int nTexID, D3DXVECTOR3 vPos);//生成依頼
+	CObjBase* Request3D(int nID, int nTexID, D3DXVECTOR3 vPos);//生成依頼
+	CObjBase* Req3DSwtAnimaru(int nID, int nTexID, D3DXVECTOR3 vPos);
+	
 	// 拡張機能
 
 };

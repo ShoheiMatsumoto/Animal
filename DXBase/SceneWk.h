@@ -8,7 +8,7 @@
 // 使用するテクスチャ
 enum
 {
-	WK_TEX_0 = 0,
+	WK_TEX_NONE = 0,		// テクスチャなし
 	WK_TEX_PLAYER,
 	WK_TEX_MOON,
 	WK_TEX_CARTEN,

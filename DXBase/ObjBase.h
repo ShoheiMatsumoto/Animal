@@ -24,6 +24,7 @@ enum
 enum
 {
 	OBJ3DGROUP_PLAYER,
+	OBJ3DGROUP_ANIMARU,
 	OBJ3DGROUP_ENEMY,
 	OBJ3DGROUP_MAP,
 	OBJ3DGROUP_EFFECT,
@@ -54,6 +55,44 @@ enum
 	COLLBASEPOINT_MAX,
 };
 
+class CContSt
+{
+private:
+	// 定数定義
+	// 移動系
+	#define ADDMSPD (0.1f)
+	#define MOVESPDMAX (4.0f)
+	#define BREAKERATE (1.5f)
+	#define BRKSPD (0.1f)
+
+	// ジャンプ関連
+
+	#define ADDJSPD ()
+	#define FFIRSTSPD (0.5f)
+	#define ADDFSPD (0.4f / 60.0f)
+	#define FSPDMAX (10.0f)
+	#define JUMPPOW (10.0f)
+	#define JUMPBRK (0.3f)
+
+
+	#define ST_STAND	0		// 立ち
+	#define ST_WALK		1		// 歩き
+	#define ST_RUN		2		// 走り
+	#define ST_ACTION	3		// アクション
+	#define ST_JUMPUP	4		// ジャンプ
+	#define ST_FALL		5		// 落下
+
+	#define MOVEVEC_TYPE_RIGHT 0
+	#define MOVEVEC_TYPE_LEFT  1
+
+public:
+	int		m_nMoveVecType;	// 向いてる方向
+	float	m_fFallSpd;	// 落下移動調整用
+	float	m_fJumpPow;	// ジャンプ力
+	float	m_fMovePow; // 移動力
+	bool	m_bJump;	// ジャンプフラグ
+};
+
 // オブジェベースクラス
 class CObjBase
 {
@@ -64,6 +103,7 @@ protected:
 	int					m_nObjGroupID;			// グループ		
 	int					m_nObjTypeID;			// グループ内での種類ごとのID
 	int					m_nIdentifID;			// 識別番号
+	static int			m_nIdentifCnt;
 
 	// ステータス
 	// 動作
@@ -129,6 +169,7 @@ public:
 	int			GetTypeID(){return m_nObjTypeID;};		// タイプIDの取得
 	int			GetIdentifID(){return m_nIdentifID;};
 	int			GetCollType(){return m_nCollBasePoint;};
+	bool		GetbUse(){return m_bUse;};
 
 	// セッター
 	void SetNext(CObjBase* pObj){m_pNext = pObj;};
@@ -144,6 +185,7 @@ public:
 	};
 	void SetRadius(D3DXVECTOR3 vRadius){m_vRadius = vRadius;};
 	void SetSpeed(D3DXVECTOR3 vSpd){m_vSpd = vSpd;};
+	void SetbUse(bool bUse){m_bUse = bUse;};
 
 	// チェッカー
 	bool CheckbeDelete(){return m_bDelete;};		// デリートするか
