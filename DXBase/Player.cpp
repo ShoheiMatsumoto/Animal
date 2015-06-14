@@ -5,6 +5,7 @@
 #include "SceneBase.h"
 #include "WkFactory.h"
 
+// 定数定義
 
 
 float g_fJumpMax; 
@@ -27,6 +28,10 @@ CPlayer::CPlayer(int n, int nTexID) : CBillboard(n, nTexID)
 CPlayer::~CPlayer(void)
 {
 }
+
+
+
+
 
 // 生成
 CPlayer*	CPlayer::Create(int nID, int nTexNum, D3DXVECTOR3 vPos)
@@ -64,9 +69,11 @@ void		CPlayer::Initialize()
 	m_bAlphaBlend = false;
 
 	m_nObjStatus = ST_STAND;
-	m_vSpd.y = -1.0f;
+	//m_vSpd.y = -1.0f;
 	
-	// プレイヤー固有ステータス
+	// 固有ステータス
+	
+
 	CSt.m_nMoveVecType = MOVEVEC_TYPE_RIGHT;		// 右向き
 	CSt.m_fFallSpd = ADDFSPD;
 	CSt.m_fJumpPow = 0.0f;
@@ -121,6 +128,7 @@ void		CPlayer::Update()
 		g_fAddfSpd -= 0.1f;*/
 
 	Control();
+	AnimaruCont();
 
 	
 	m_vPos += m_vSpd;		// 座標への代入
@@ -215,7 +223,8 @@ void		CPlayer::BacktoStand()
 void		CPlayer::Move()
 {
 	// 右
-	if(GETINPUT->GetKey(KEY_PRS, DIK_RIGHT))
+	//if(GETINPUT->GetKey(KEY_PRS, DIK_RIGHT))
+	if(m_bInput[KEY_PRS][INP_BTN_RIGHT])
 	{
 		//if(GETINPUT->GetKey(KEY_TRG, DIK_RIGHT))
 			//ReverseLR(TEX_LRREV);
@@ -237,7 +246,8 @@ void		CPlayer::Move()
 	}
 
 	// 左
-	if(GETINPUT->GetKey(KEY_PRS, DIK_LEFT))
+	//if(GETINPUT->GetKey(KEY_PRS, DIK_LEFT))
+	if(m_bInput[KEY_PRS][INP_BTN_LEFT])
 	{
 		//if(GETINPUT->GetKey(KEY_TRG, DIK_LEFT))
 			
@@ -272,7 +282,8 @@ void		CPlayer::Move()
 // ジャンプし始め
 void		CPlayer::PushJump()
 {
-	if(GETINPUT->GetKey(KEY_TRG, DIK_SPACE))
+	//if(GETINPUT->GetKey(KEY_TRG, DIK_SPACE))
+	if(m_bInput[KEY_TRG][INP_BTN_SPACE])
 	{
 		if(!CSt.m_bJump)
 		{
@@ -368,6 +379,13 @@ void		CPlayer::Control()
 	
 }
 
+// アニマル関連の更新まとめ
+void CPlayer::AnimaruCont()
+{
+	CheckAniDist();
+}
+
+
 // プレイヤーが置かれている環境をチェックし、ステータスを変更
 void			CPlayer::CheckEnvir()
 {
@@ -395,11 +413,13 @@ bool		CPlayer::CheckRun()
 	//	return false;		// ジャンプ中または落下中である
 
 	// 両方入力してる
-	if((GETINPUT->GetKey(KEY_PRS, DIK_RIGHT)) && (GETINPUT->GetKey(KEY_PRS, DIK_LEFT)))
+	//if((GETINPUT->GetKey(KEY_PRS, DIK_RIGHT)) && (GETINPUT->GetKey(KEY_PRS, DIK_LEFT)))
+	if(m_bInput[KEY_PRS][INP_BTN_RIGHT] && m_bInput[KEY_PRS][INP_BTN_LEFT])	
 		return false;
 
 	// 左右の入力がある
-	if((GETINPUT->GetKey(KEY_PRS, DIK_RIGHT)) || (GETINPUT->GetKey(KEY_PRS, DIK_LEFT)))
+	//if((GETINPUT->GetKey(KEY_PRS, DIK_RIGHT)) || (GETINPUT->GetKey(KEY_PRS, DIK_LEFT)))
+	if(m_bInput[KEY_PRS][INP_BTN_RIGHT] || m_bInput[KEY_PRS][INP_BTN_LEFT])		
 		return true;
 
 	return false;		// 止まってる
@@ -465,7 +485,7 @@ void CPlayer::HitUDToMapParts(CObjBase* pObj, int nType, D3DXVECTOR3 vPos)
 		{	
 			CSt.m_fMovePow = 0.0f;
 		}
-		m_vPos = vPos;
+		m_vPos = vWkPos;
 		break;
 
 	case MAPPARTS_RUP:
@@ -494,7 +514,7 @@ void CPlayer::SetAnimaru()
 	// 使用可能かの状態を外部から読み込み
 
 	// 生成
-	D3DXVECTOR3 vPos = D3DXVECTOR3(m_vPos.x - 10.0f, 0.0f, 0.0f);
+	D3DXVECTOR3 vPos = D3DXVECTOR3(m_vPos.x - 10.0f, 0.0f, 10.0f);
 	CFactoryBase* pFac;
 	pFac = CSceneBase::GetCurScene()->GetFactory();
 	m_pAnimaruBox[ANIMARU_NO_NEZU] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_NEZU, 0, vPos);
@@ -511,24 +531,82 @@ void CPlayer::SetAnimaru()
 	m_pAnimaruBox[ANIMARU_NO_URI] = (CAnimaruBase *)pFac->Request3D(WK_OBJ3D_URI, 0, vPos);
 
 	for(int i = 0; i < ANIMARU_NO_MAX; i++)
-		m_pAnimaruBox[i]->SetbUse(false);		// とりあえず非更新状態
-
+	{
+		m_pAnimaruBox[i]->SetbUpdate(false);		// とりあえず非更新状態
+		m_pAnimaruBox[i]->SetbDraw(false);		
+		//m_pAnimaruBox[i]->SetChasePos(&m_vPos);	// プレイヤーの座標渡し
+	}
 	// 外部から現在スロットにセットされているアニまるをもらいスロットにセット
 	// 今はとりあえず　ね、うし、とら
 	m_pAnimaruSlot[0] = m_pAnimaruBox[ANIMARU_NO_NEZU];
 	m_pAnimaruSlot[1] = m_pAnimaruBox[ANIMARU_NO_USHI];
 	m_pAnimaruSlot[2] = m_pAnimaruBox[ANIMARU_NO_TORA];
 
-	m_pAnimaruSlot[0]->SetbUse(true);
-	m_pAnimaruSlot[1]->SetbUse(true);
-	m_pAnimaruSlot[2]->SetbUse(true);
+	// 更新フラグON
+	m_pAnimaruSlot[0]->SetbUpdate(true);
+	m_pAnimaruSlot[1]->SetbUpdate(true);
+	m_pAnimaruSlot[2]->SetbUpdate(true);
+
+	// 描画ON
+	m_pAnimaruSlot[0]->SetbDraw(true);
+	m_pAnimaruSlot[1]->SetbDraw(true);
+	m_pAnimaruSlot[2]->SetbDraw(true);
+
+	// IDセット
+	m_pAnimaruSlot[0]->SetSlotID(0);
+	m_pAnimaruSlot[1]->SetSlotID(1);
+	m_pAnimaruSlot[2]->SetSlotID(2);
+
+	// 追跡座標セット
+	m_pAnimaruSlot[0]->SetChasePos(&m_vPos);
+	m_pAnimaruSlot[1]->SetChasePos(m_pAnimaruSlot[0]->GetPosp());
+	m_pAnimaruSlot[2]->SetChasePos(m_pAnimaruSlot[1]->GetPosp());
+
+
 }
 
 // 距離判定
 void CPlayer::CheckAniDist()
 {
-	// 一匹目との距離を測る
-
+//	float x;
+//	int nVec;
+//
+//	// 一匹目との距離を測る
+//	x = m_pAnimaruSlot[0]->GetPos().x - m_vPos.x;
+//
+//	if(abs(x) >= DIST_ONE)
+//	{
+//		if(x > 0.0f)
+//			nVec = CHASE_RIGHT;
+//		else
+//			nVec = CHASE_LEFT;
+//		m_pAnimaruSlot[0]->SetbChase(true, nVec);
+//	}
+//
+//	// 二匹目との距離を測る
+//	x = m_pAnimaruSlot[1]->GetPos().x - m_vPos.x;
+//
+//	if(abs(x) >= DIST_TWO)
+//	{
+//		if(x > 0.0f)
+//			nVec = CHASE_RIGHT;
+//		else
+//			nVec = CHASE_LEFT;
+//		m_pAnimaruSlot[1]->SetbChase(true, nVec);
+//	}
+//
+//	// 三匹目との距離を測る
+//	x = m_pAnimaruSlot[2]->GetPos().x - m_vPos.x;
+//
+//	if(abs(x) >= DIST_THREE)
+//	{
+//		if(x > 0.0f)
+//			nVec = CHASE_RIGHT;
+//		else
+//			nVec = CHASE_LEFT;
+//		m_pAnimaruSlot[2]->SetbChase(true, nVec);
+//	}
+//	
 }
 
 // 座標保存

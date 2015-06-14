@@ -75,6 +75,7 @@ public:
 	void SetChangeScene();
 private:
 	bool		 Initialize();
+	CObjBase*	m_pControlObj;
 
 private:
 	// インスタンス	

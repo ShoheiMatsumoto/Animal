@@ -42,6 +42,9 @@ protected:
 	TCHAR		m_szDebug[4096];	// デバッグ用文字列
 	bool		m_bSC;		// シーン切り替え用(SceneChange)
 
+	// 入力
+	bool		m_bInput[INPTYPE][INP_BTN_MAX];
+
 private:
 	static DWORD			m_dwNewStateID;			// シーンID
 	static DWORD			m_dwOldStateID;			// 旧シーンID 
@@ -67,6 +70,7 @@ public:
 	// 拡張機能
 	void StacScene();		// シーンをスタックする
 	void PopScene();		// シーンをポップ
+	void SetInputData(bool bInp[INPTYPE][INP_BTN_MAX]);	// 入力状態セット
 	// void MoveScenePrev();	// 前シーンに移動（Ctrl + Z 的な）
 	// void MoveSceneNext();	// 次シーンに移動（Ctrl + Y 的な）
 

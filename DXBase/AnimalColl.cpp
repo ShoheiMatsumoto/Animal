@@ -69,7 +69,7 @@ bool CAnimalColl::CollToMapBox(CObjBase* pObj1, CMapPartsBase* pObj2, D3DXVECTOR
 	D3DXVECTOR3 s1, s2;		// サイズ
 	D3DXVECTOR3 r1, r2;		// 半径
 	int bp1, bp2;
-	int nLine;
+	//int nLine;
 	float ad1[4];
 	float ad2[4];
 
@@ -77,6 +77,8 @@ bool CAnimalColl::CollToMapBox(CObjBase* pObj1, CMapPartsBase* pObj2, D3DXVECTOR
 	s1 = pObj1->GetSize();
 	r1 = pObj1->GetRadius();
 	bp1 = pObj1->GetCollType();
+	s1.x --;
+	r1.x -= 0.5f;
 	SetAdjSquare3D(ad1, bp1, s1, r1);
 
 	p2 = pObj2->GetPos();
@@ -94,7 +96,7 @@ bool CAnimalColl::CollToMapBox(CObjBase* pObj1, CMapPartsBase* pObj2, D3DXVECTOR
 		p1.y + ad1[0] >= p2.y + ad2[2] && p1.y + ad1[2] <= p2.y + ad2[2])
 		{
 			// 交点を求める
-			*vPos = GetMapBoxCrossPos(pObj1, pObj2, &nLine);
+			//*vPos = GetMapBoxCrossPos(pObj1, pObj2, &nLine);
 
 
 			return true;
@@ -128,7 +130,9 @@ D3DXVECTOR3 CAnimalColl::GetMapBoxCrossPos(CObjBase* pObj1, CMapPartsBase* pObj2
 	op1 = pObj1->GetOldPos();
 	spd1 = pObj1->GetSpeed();
 	s1 = pObj1->GetSize();
+	s1.x --;
 	r1 = pObj1->GetRadius();
+	r1.x -= 0.5f;
 	bp1 = pObj1->GetCollType();
 	SetAdjSquare3D(ad1, bp1, s1, r1);
 	Seg1.vSPos = op1 + spd1;		// 始点は移動後の原点とする
@@ -137,6 +141,10 @@ D3DXVECTOR3 CAnimalColl::GetMapBoxCrossPos(CObjBase* pObj1, CMapPartsBase* pObj2
 	// obj2の変数移し替え
 	p2 = pObj2->GetPos();
 	r2 = pObj2->GetRadius();
+
+	
+
+
 
 	// xとy要素を分けて交線判定
 	// 上下の線と
@@ -294,7 +302,7 @@ D3DXVECTOR3 CAnimalColl::GetMapBoxCrossPos(CObjBase* pObj1, CMapPartsBase* pObj2
 	vCross.y = p1.y;
 	vCross.x -= adx;
 	vCross.z = p1.z;
-
+ 
 	return vCross;
 
 }

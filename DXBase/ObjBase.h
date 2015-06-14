@@ -55,6 +55,26 @@ enum
 	COLLBASEPOINT_MAX,
 };
 
+#define INPTYPE (3)
+// 入力
+enum
+{
+	INP_BTN_UP,
+	INP_BTN_DOWN,
+	INP_BTN_RIGHT,
+	INP_BTN_LEFT,
+	INP_BTN_SPACE,
+	INP_BTN_LSHIFT,
+	INP_BTN_Q,
+	INP_BTN_W,
+	INP_BTN_E,
+	INP_BTN_A,
+	INP_BTN_S,
+	INP_BTN_D,
+
+	INP_BTN_MAX
+};
+
 class CContSt
 {
 private:
@@ -81,6 +101,7 @@ private:
 	#define ST_ACTION	3		// アクション
 	#define ST_JUMPUP	4		// ジャンプ
 	#define ST_FALL		5		// 落下
+	#define ST_ALL		6
 
 	#define MOVEVEC_TYPE_RIGHT 0
 	#define MOVEVEC_TYPE_LEFT  1
@@ -90,7 +111,11 @@ public:
 	float	m_fFallSpd;	// 落下移動調整用
 	float	m_fJumpPow;	// ジャンプ力
 	float	m_fMovePow; // 移動力
+	float	m_fBrakePow;	// ブレーキング
 	bool	m_bJump;	// ジャンプフラグ
+
+	// 関数
+
 };
 
 // オブジェベースクラス
@@ -106,6 +131,10 @@ protected:
 	static int			m_nIdentifCnt;
 
 	// ステータス
+	// 入力
+	int		m_bEvent;		// イベント
+	bool m_bInput[INPTYPE][INP_BTN_MAX];
+
 	// 動作
 	D3DXMATRIX			m_world;	// ワールド変換行列
 	D3DXVECTOR3			m_vPos;		// 座標
@@ -116,12 +145,14 @@ protected:
 	D3DXVECTOR3			m_vSize;	// サイズ
 	D3DXVECTOR3			m_vRadius;	// 半径
 	bool				m_bUse;		// 使用フラグ
+	bool				m_bUpdate;	// 更新フラグ
+	bool				m_bDraw;	// 描画フラグ
 	bool				m_bHit;		// ヒットフラグ
 	int					m_nObjStatus;		// ステータス
 	
 	// 描画
 	int					m_nDrawType;
-	bool				m_bDraw;			// 描画フラグ	
+	//bool				m_bDraw;			// 描画フラグ	
 	bool				m_bUseShader;		// シェーダを使うか
 	int					m_nShadeTechNum;	// シェーダテクニック番号
 	bool				m_bAlphaBlend;	// アルファブレンドするか
@@ -151,13 +182,25 @@ public:
 	// 拡張
 	//bool CollSquare(CObjBase* pObj);
 	//bool CollCircle(CObjBase* pObj);
-	
+
+	// 入力関係
+	void		SetInputData(bool bInp[INPTYPE][INP_BTN_MAX]);
+	void		InitInputData()
+	{
+		for(int i = 0; i < INPTYPE; i++)
+		{
+			for(int j = 0; j < INP_BTN_MAX; j++)
+				m_bInput[i][j] = false;
+		}
+	};
+	void SetEvent(bool bEvent){m_bEvent = bEvent;};
 
 	// ゲッター
 	CObjBase* GetNext(){return m_pNext;};		// 次のポインタを取得
 	CObjBase* GetPrev(){return m_pPrev;};		// 前のポインタを取得
 
 	D3DXVECTOR3 GetPos(){return m_vPos;};
+	D3DXVECTOR3* GetPosp(){return &m_vPos;};
 	D3DXVECTOR3 GetOldPos(){return m_vOldPos;};
 	D3DXVECTOR3 GetSpeed(void) {return m_vSpd;};		// 速度ゲット
 	D3DXVECTOR3 GetAccel(void) {return m_vAccel;};		// 加速度ゲット
@@ -170,6 +213,8 @@ public:
 	int			GetIdentifID(){return m_nIdentifID;};
 	int			GetCollType(){return m_nCollBasePoint;};
 	bool		GetbUse(){return m_bUse;};
+	bool		GetbUpdate(){return m_bUpdate;};
+	bool		GetbDraw(){return m_bDraw;};
 
 	// セッター
 	void SetNext(CObjBase* pObj){m_pNext = pObj;};
@@ -186,6 +231,8 @@ public:
 	void SetRadius(D3DXVECTOR3 vRadius){m_vRadius = vRadius;};
 	void SetSpeed(D3DXVECTOR3 vSpd){m_vSpd = vSpd;};
 	void SetbUse(bool bUse){m_bUse = bUse;};
+	void SetbUpdate(bool bUpdate){m_bUpdate = bUpdate;};
+	void SetbDraw(bool bDraw){m_bDraw = bDraw;};
 
 	// チェッカー
 	bool CheckbeDelete(){return m_bDelete;};		// デリートするか

@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "GameWnd.h"
 #include "SceneBase.h"
+#include "Input.h"
 
 
 // スタティック初期化
@@ -194,6 +195,122 @@ void CSceneBase::Draw()
 	m_pCurScene->Draw();
 }
 
+//-----------------------------------
+// 入力状態セット
+//------------------------------------
+void CSceneBase::SetInputData(bool bInp[INPTYPE][INP_BTN_MAX])
+{
+	// プレス*******************************************
+	if(GETINPUT->GetKey(KEY_PRS, DIK_LEFT))		// 左
+		bInp[KEY_PRS][INP_BTN_LEFT] = true;
+
+	if(GETINPUT->GetKey(KEY_PRS, DIK_RIGHT))	// 右
+		bInp[KEY_PRS][INP_BTN_RIGHT] = true;
+
+	if(GETINPUT->GetKey(KEY_PRS, DIK_UP))		// 上
+		bInp[KEY_PRS][INP_BTN_UP] = true;
+
+	if(GETINPUT->GetKey(KEY_PRS, DIK_DOWN))		// 下
+		bInp[KEY_PRS][INP_BTN_DOWN] = true;
+
+	if(GETINPUT->GetKey(KEY_PRS, DIK_SPACE))	// space
+		bInp[KEY_PRS][INP_BTN_SPACE] = true;
+
+	if(GETINPUT->GetKey(KEY_PRS, DIK_LSHIFT))		// lshift
+		bInp[KEY_PRS][INP_BTN_LSHIFT] = true;
+
+	if(GETINPUT->GetKey(KEY_PRS, DIK_Q))		// Q
+		bInp[KEY_PRS][INP_BTN_Q] = true;
+
+	if(GETINPUT->GetKey(KEY_PRS, DIK_W))		// W
+		bInp[KEY_PRS][INP_BTN_W] = true;
+
+	if(GETINPUT->GetKey(KEY_PRS, DIK_E))		// E
+		bInp[KEY_PRS][INP_BTN_E] = true;
+
+	if(GETINPUT->GetKey(KEY_PRS, DIK_A))		// A
+		bInp[KEY_PRS][INP_BTN_A] = true;
+	
+	if(GETINPUT->GetKey(KEY_PRS, DIK_S))		// S		
+		bInp[KEY_PRS][INP_BTN_S] = true;
+
+	if(GETINPUT->GetKey(KEY_PRS, DIK_D))		// D
+		bInp[KEY_PRS][INP_BTN_D] = true;
+
+	// トリガー***************************************:
+	if(GETINPUT->GetKey(KEY_TRG, DIK_LEFT))		// 左
+		bInp[KEY_TRG][INP_BTN_LEFT] = true;
+
+	if(GETINPUT->GetKey(KEY_TRG, DIK_RIGHT))	// 右
+		bInp[KEY_TRG][INP_BTN_RIGHT] = true;
+
+	if(GETINPUT->GetKey(KEY_TRG, DIK_UP))		// 上
+		bInp[KEY_TRG][INP_BTN_UP] = true;
+
+	if(GETINPUT->GetKey(KEY_TRG, DIK_DOWN))		// 下
+		bInp[KEY_TRG][INP_BTN_DOWN] = true;
+
+	if(GETINPUT->GetKey(KEY_TRG, DIK_SPACE))	// space
+		bInp[KEY_TRG][INP_BTN_SPACE] = true;
+
+	if(GETINPUT->GetKey(KEY_TRG, DIK_LSHIFT))		// lshift
+		bInp[KEY_TRG][INP_BTN_LSHIFT] = true;
+
+	if(GETINPUT->GetKey(KEY_TRG, DIK_Q))		// Q
+		bInp[KEY_TRG][INP_BTN_Q] = true;
+
+	if(GETINPUT->GetKey(KEY_TRG, DIK_W))		// W
+		bInp[KEY_TRG][INP_BTN_W] = true;
+
+	if(GETINPUT->GetKey(KEY_TRG, DIK_E))		// E
+		bInp[KEY_TRG][INP_BTN_E] = true;
+
+	if(GETINPUT->GetKey(KEY_TRG, DIK_A))		// A
+		bInp[KEY_TRG][INP_BTN_A] = true;
+	
+	if(GETINPUT->GetKey(KEY_TRG, DIK_S))		// S		
+		bInp[KEY_TRG][INP_BTN_S] = true;
+
+	if(GETINPUT->GetKey(KEY_TRG, DIK_D))		// D
+		bInp[KEY_TRG][INP_BTN_D] = true;
+
+	// リリース****************************************
+	if(GETINPUT->GetKey(KEY_RLS, DIK_LEFT))		// 左
+		bInp[KEY_RLS][INP_BTN_LEFT] = true;
+
+	if(GETINPUT->GetKey(KEY_RLS, DIK_RIGHT))	// 右
+		bInp[KEY_RLS][INP_BTN_RIGHT] = true;
+
+	if(GETINPUT->GetKey(KEY_RLS, DIK_UP))		// 上
+		bInp[KEY_RLS][INP_BTN_UP] = true;
+
+	if(GETINPUT->GetKey(KEY_RLS, DIK_DOWN))		// 下
+		bInp[KEY_RLS][INP_BTN_DOWN] = true;
+
+	if(GETINPUT->GetKey(KEY_RLS, DIK_SPACE))	// space
+		bInp[KEY_RLS][INP_BTN_SPACE] = true;
+
+	if(GETINPUT->GetKey(KEY_RLS, DIK_LSHIFT))		// lshift
+		bInp[KEY_RLS][INP_BTN_LSHIFT] = true;
+
+	if(GETINPUT->GetKey(KEY_RLS, DIK_Q))		// Q
+		bInp[KEY_RLS][INP_BTN_Q] = true;
+
+	if(GETINPUT->GetKey(KEY_RLS, DIK_W))		// W
+		bInp[KEY_RLS][INP_BTN_W] = true;
+
+	if(GETINPUT->GetKey(KEY_RLS, DIK_E))		// E
+		bInp[KEY_RLS][INP_BTN_E] = true;
+
+	if(GETINPUT->GetKey(KEY_RLS, DIK_A))		// A
+		bInp[KEY_RLS][INP_BTN_A] = true;
+	
+	if(GETINPUT->GetKey(KEY_RLS, DIK_S))		// S		
+		bInp[KEY_RLS][INP_BTN_S] = true;
+
+	if(GETINPUT->GetKey(KEY_RLS, DIK_D))		// D
+		bInp[KEY_RLS][INP_BTN_D] = true;
+}
 
 //=======================================================================================
 //	End of File

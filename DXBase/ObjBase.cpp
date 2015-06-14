@@ -32,6 +32,17 @@ CObjBase::CObjBase(void)
 
 	m_pNext = NULL;
 	m_pPrev = NULL;
+
+	// “ü—Í
+	for(int i = 0; i < INPTYPE; i++)
+	{
+		for(int j = 0; j < INP_BTN_MAX; j++)
+			m_bInput[i][j] = false;
+	}
+	m_bEvent = false;
+
+	m_bUpdate = false;
+	m_bDraw = false;
 }
 
 CObjBase::CObjBase(int nID)
@@ -68,6 +79,14 @@ CObjBase::CObjBase(int nID)
 
 	m_pNext = NULL;
 	m_pPrev = NULL;
+
+	// “ü—Í
+	for(int i = 0; i < INPTYPE; i++)
+	{
+		for(int j = 0; j < INP_BTN_MAX; j++)
+			m_bInput[i][j] = false;
+	}
+	m_bEvent = false;
 }
 
 CObjBase::~CObjBase(void)
@@ -145,6 +164,16 @@ D3DXMATRIX CreateScreenMat()
 		mat._44 = 1;
 	
 		return mat;
+}
+
+// “ü—Í
+void		CObjBase::SetInputData(bool bInp[INPTYPE][INP_BTN_MAX])
+{
+	for(int i = 0; i < INPTYPE; i++)
+	{
+		for(int j = 0; j < INP_BTN_MAX; j++)
+			m_bInput[i][j] = bInp[i][j];
+	}
 }
 
 //// ŽlŠp”»’è

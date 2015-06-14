@@ -109,7 +109,7 @@ bool CSceneWk::Initialize()
 		ry = 0.0f;
 
 	// 敷き詰める
-	for(int j = -6; j < 0; j++)
+	for(int j = -6; j < 30; j++)
 	{
 		pv = D3DXVECTOR3(sx * j - 96.0f, -288.0f + 32.0f, 10.0f);
 		m_pFactory->Request3D(WK_OBJ3D_MPSQUARE, WK_TEX_SQUARE, pv);
@@ -121,10 +121,8 @@ bool CSceneWk::Initialize()
 	m_pFactory->Request3D(WK_OBJ3D_MPRUP, WK_TEX_SLOPE, D3DXVECTOR3(320.0f, -288.0f + 32.0f, 10.0f));
 
 	// プレイヤー
-	m_pFactory->Request3D(WK_OBJ3D_PLAYER, WK_TEX_PLAYER, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	m_pControlObj = m_pFactory->Request3D(WK_OBJ3D_PLAYER, WK_TEX_PLAYER, D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	
-	
-
 	// カメラ設定
 	// カメラを置く位置を求める(平行投影するから意味が無くなったかも)
 	D3DXVECTOR3 vNScreentoCam = D3DXVECTOR3(0.0f, 1.0f, 0.0f); // スクリーンからカメラ位置へのベクトル
@@ -259,6 +257,13 @@ void CSceneWk::Update()
 	//		//CGameMgr::m_pGameMgr->SetScene(SCENE_STAGE);
 	//	}
 	//}
+
+	// 入力セット
+	bool bInp[INPTYPE][INP_BTN_MAX] = {0};
+	SetInputData(bInp);
+
+	// コントロールするオブジェへ入力情報を渡す
+	m_pControlObj->SetInputData(bInp);
 
 	// 全オブジェクト更新
 	m_pObjMgr->AllUpdate();		// 3D2Dまとめて更新
